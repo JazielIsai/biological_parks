@@ -6,20 +6,15 @@
  * @flow strict-local
  */
 
+import 'react-native-gesture-handler';
 import React from 'react';
-import {
-  Text,
-  View,
-} from 'react-native';
+
+import RouterMain from './src/router/Router';
 
 const App = () => {
-  
-  return (
-    <View>
-      <Text>
-        Holas
-      </Text>
-    </View>
+
+    return (
+        <RouterMain/>
   );
 };
 
