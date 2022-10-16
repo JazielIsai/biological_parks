@@ -10,11 +10,14 @@ import 'react-native-gesture-handler';
 import React from 'react';
 
 import RouterMain from './src/router/Router';
+import {AuthProvider} from "./src/auth/context/AuthProvider";
 
 const App = () => {
 
     return (
-        <RouterMain/>
+        <AuthProvider>
+            <RouterMain/>
+        </AuthProvider>
   );
 };
 

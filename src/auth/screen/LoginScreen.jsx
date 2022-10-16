@@ -1,11 +1,24 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Background} from "../components/Background";
+import {AuthContext} from "../context/AuthContext";
 
 export const LoginScreen = () => {
 
     const navigation = useNavigation();
+
+    const {login} = useContext(AuthContext);
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const onLogin = () => {
+
+        login(email, password)
+        navigation.navigate('BiologicalPark', { screen: 'Home' });
+
+    }
 
     return(
         <>
@@ -23,6 +36,7 @@ export const LoginScreen = () => {
                         autoCorrect={false}
                         underlineColorAndroid={'white'}
                         selectionColor={'white'}
+                        onChangeText={ (value) => setEmail(value) }
                     />
                     <TextInput
                         placeholder={'Contraseña'}
@@ -31,11 +45,14 @@ export const LoginScreen = () => {
                         style={styles.textInput}
                         placeholderTextColor={'rgba(255,255,255,0.4)'}
                         underlineColorAndroid={'white'}
-
+                        onChangeText={ (value) => setPassword(value) }
                     />
 
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.btnLogin} >
+                        <TouchableOpacity
+                            style={styles.btnLogin}
+                            onPress={ onLogin }
+                        >
                             <View style={styles.btnView}>
                                 <Text style={styles.textButton}> Ingresar </Text>
                             </View>
