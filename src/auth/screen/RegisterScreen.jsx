@@ -1,59 +1,105 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image} from 'react-native';
+import {Background} from "../components/Background";
+import {useNavigation} from "@react-navigation/native";
 
 export const RegisterScreen = () => {
 
+    const navigation = useNavigation();
+
     return (
-        <View style={styles.container}>
-            <Text> Registrarse </Text>
-            <View>
+        <>
+            <Background />
+            <View style={styles.container}>
+                <Text
+                    style={{color: 'white', fontWeight: 'bold', fontSize: 14}}
+                >
+                    Registrarse
+                </Text>
 
-                <TextInput
-                    placeholder={'Nombre(s)'}
-                    style={styles.textInput}
-                    secureTextEntry
-                />
+                <View>
 
-                <TextInput
-                    placeholder={'Apellidos'}
-                    style={styles.textInput}
-                    secureTextEntry
-                />
+                    <TextInput
+                        placeholder={'Nombre(s)'}
+                        style={styles.textInput}
+                        placeholderTextColor={'rgba(255,255,255,0.4)'}
+                        underlineColorAndroid={'white'}
+                        secureTextEntry
+                        selectionColor={'white'}
 
-                <TextInput
-                    placeholder={'Titulo Academico'}
-                    style={styles.textInput}
-                    secureTextEntry
-                />
+                    />
 
-                <TextInput
-                    placeholder={'Email'}
-                    secureTextEntry
-                    style={styles.textInput}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    autoCorrect={false}
+                    <TextInput
+                        placeholder={'Apellidos'}
+                        placeholderTextColor={'rgba(255,255,255,0.4)'}
+                        style={styles.textInput}
+                        underlineColorAndroid={'white'}
+                        secureTextEntry
+                        selectionColor={'white'}
 
-                />
+                    />
 
-                <TextInput
-                    placeholder={'Contraseña'}
-                    secureTextEntry
-                    style={styles.textInput}
+                    <TextInput
+                        placeholder={'Titulo Academico'}
+                        style={styles.textInput}
+                        placeholderTextColor={'rgba(255,255,255,0.4)'}
+                        underlineColorAndroid={'white'}
+                        secureTextEntry
+                        selectionColor={'white'}
 
-                />
+                    />
 
-                <TextInput
-                />
+                    <TextInput
+                        placeholder={'Email'}
+                        secureTextEntry
+                        style={styles.textInput}
+                        placeholderTextColor={'rgba(255,255,255,0.4)'}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        underlineColorAndroid={'white'}
+                        selectionColor={'white'}
 
-                <TouchableOpacity style={styles.btnLogin} >
-                    <View style={styles.btnView}>
-                        <Text style={styles.textButton}> Ingresar </Text>
+                    />
+
+                    <TextInput
+                        placeholder={'Contraseña'}
+                        placeholderTextColor={'rgba(255,255,255,0.4)'}
+                        secureTextEntry
+                        style={styles.textInput}
+                        underlineColorAndroid={'white'}
+                        selectionColor={'white'}
+
+                    />
+
+                    <TextInput
+                    />
+
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.btnLogin} >
+                            <View style={styles.btnView}>
+                                <Text style={styles.textButton}> Registrarse </Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
-                </TouchableOpacity>
 
+                    <View style={styles.btnLink}>
+                        <TouchableOpacity
+                            style={styles.btnLinkGoRegister}
+                            onPress={() => navigation.navigate('Login')}
+                        >
+                            <Text
+                                style={{color: 'rgb(187,204,246)'}}
+                            >
+                                Iniciar sessión
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
             </View>
-        </View>
+        </>
+
     );
 };
 
@@ -65,28 +111,36 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textInput: {
-        borderWidth: 1,
-        borderColor: 'black',
-        borderRadius: 10,
         height: 50,
         width: 200,
         marginVertical: 10,
     },
+    buttonContainer: {
+      alignItems: 'center',
+      marginTop: 50,
+    },
     btnLogin: {
-        backgroundColor: '#5ccb5f',
-        borderRadius: 10,
-        height: 34,
-        width: 100,
-        marginVertical: 10,
+        borderWidth: 2,
+        borderColor: 'rgb(231,231,228)',
+        paddingHorizontal: 20,
+        paddingVertical: 5,
+        borderRadius: 100,
     },
     btnView: {
         justifyContent: 'center',
         alignItems: 'center',
     },
     textButton: {
-        color: 'white',
+        color: 'rgb(229,227,227)',
         fontSize: 20,
-        fontWeight: 'bold',
         textAlign: 'center',
     },
+    btnLink: {
+        marginTop: 20,
+        alignItems: 'flex-end'
+    },
+    btnLinkGoRegister: {
+        borderColor: 'rgba(156,213,248,0.4)',
+        borderBottomWidth: 1
+    }
 });

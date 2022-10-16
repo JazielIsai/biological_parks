@@ -26,6 +26,8 @@ export default function RouterMain() {
                     <Stack.Screen name={'Register'} component={RegisterScreen} />
                 </Stack.Group>
 
+
+
             </Stack.Navigator>
 
         </NavigationContainer>

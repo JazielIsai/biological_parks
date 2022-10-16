@@ -8,15 +8,14 @@ export const Background = () => {
             style={{
                 position: 'absolute',
                 backgroundColor: '#6956D6',
-                top: -450,
+                top: -350,
                 width: 1000,
                 height: 1200,
                 transform: [
-                    { rotate: '-70deg' }
+                    { rotate: '-65deg' }
                 ]
             }}
         >
-
         </View>
     )
 }

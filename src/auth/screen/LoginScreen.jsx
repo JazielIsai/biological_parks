@@ -11,35 +11,48 @@ export const LoginScreen = () => {
         <>
             <Background />
             <View style={styles.container}>
-                <Text> Inicio de Sessión </Text>
+                <Text style={{color: 'white', fontWeight: 'bold', fontSize: 14}}> Inicio de Sessión </Text>
                 <View>
                     <TextInput
                         placeholder={'Usuario / Email'}
                         secureTextEntry
+                        placeholderTextColor={'rgba(255,255,255,0.4)'}
                         style={styles.textInput}
                         keyboardType="email-address"
                         autoCapitalize="none"
                         autoCorrect={false}
-
+                        underlineColorAndroid={'white'}
+                        selectionColor={'white'}
                     />
                     <TextInput
                         placeholder={'Contraseña'}
+                        selectionColor={'white'}
                         secureTextEntry
                         style={styles.textInput}
+                        placeholderTextColor={'rgba(255,255,255,0.4)'}
+                        underlineColorAndroid={'white'}
 
                     />
 
-                    <TouchableOpacity style={styles.btnLogin} >
-                        <View style={styles.btnView}>
-                            <Text style={styles.textButton}> Ingresar </Text>
-                        </View>
-                    </TouchableOpacity>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.btnLogin} >
+                            <View style={styles.btnView}>
+                                <Text style={styles.textButton}> Ingresar </Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
 
-                    <View>
-                        <Button
-                            title="Go to Details"
+                    <View style={styles.btnLink}>
+                        <TouchableOpacity
+                            style={styles.btnLinkGoRegister}
                             onPress={() => navigation.navigate('Register')}
-                        />
+                        >
+                            <Text
+                                style={{color: 'rgb(187,204,246)'}}
+                            >
+                                Registrarse
+                            </Text>
+                        </TouchableOpacity>
                     </View>
 
                 </View>
@@ -56,28 +69,36 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textInput: {
-        borderWidth: 1,
-        borderColor: 'black',
-        borderRadius: 10,
         height: 50,
         width: 200,
         marginVertical: 10,
     },
+    buttonContainer: {
+        alignItems: 'center',
+        marginTop: 50,
+    },
     btnLogin: {
-        backgroundColor: '#5ccb5f',
-        borderRadius: 10,
-        height: 34,
-        width: 100,
-        marginVertical: 10,
+        borderWidth: 2,
+        borderColor: 'rgb(231,231,228)',
+        paddingHorizontal: 20,
+        paddingVertical: 5,
+        borderRadius: 100,
     },
     btnView: {
         justifyContent: 'center',
         alignItems: 'center',
     },
     textButton: {
-        color: 'white',
+        color: 'rgb(229,227,227)',
         fontSize: 20,
-        fontWeight: 'bold',
         textAlign: 'center',
     },
+    btnLink: {
+      marginTop: 20,
+      alignItems: 'flex-end'
+    },
+    btnLinkGoRegister: {
+        borderColor: 'rgba(156,213,248,0.4)',
+        borderBottomWidth: 1
+    }
 });
