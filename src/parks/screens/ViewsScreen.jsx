@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet} from "react-native";
+import {View, Text, TextInput, StyleSheet, VirtualizedList} from "react-native";
 import { Search } from '../../components/Search';
 
 export const ViewsScreen = () => {
@@ -11,6 +11,7 @@ export const ViewsScreen = () => {
         >
             <Search />
             
+    
         </View>
     )
 }
