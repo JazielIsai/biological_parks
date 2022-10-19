@@ -1,76 +1,123 @@
+import { Picker } from '@react-native-picker/picker';
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image} from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image,ScrollView } from 'react-native';
+
 
 
 export const RegisterPark = () => {
+    const [selectedValue, setSelectedValue]=useState("guanajuato");
+    // con
 
     return (
-        <>
+        <ScrollView>
             <View style={styles.container}>
                 <Text
-                    style={{color: 'white', fontWeight: 'bold', fontSize: 14}}
+                    style={{color: 'black', fontWeight: 'bold', fontSize: 18}}
                 >
-                    Registrarse
+                    Registrar parque
                 </Text>
 
                 <View>
 
                     <TextInput
-                        placeholder={'Nombre(s)'}
+                        placeholder={'Nombre'}
                         style={styles.textInput}
-                        placeholderTextColor={'rgba(255,255,255,0.4)'}
-                        underlineColorAndroid={'white'}
-                        secureTextEntry
-                        selectionColor={'white'}
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
+                        underlineColorAndroid={'gray'}
+                        selectionColor={'gray'}
 
                     />
 
                     <TextInput
-                        placeholder={'Apellidos'}
-                        placeholderTextColor={'rgba(255,255,255,0.4)'}
+                        placeholder={'Antecedentes'}
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'white'}
-                        secureTextEntry
-                        selectionColor={'white'}
-
+                        underlineColorAndroid={'gray'}
+                        selectionColor={'gray'}
                     />
 
                     <TextInput
-                        placeholder={'Titulo Academico'}
+                        placeholder={'Área'}
                         style={styles.textInput}
-                        placeholderTextColor={'rgba(255,255,255,0.4)'}
-                        underlineColorAndroid={'white'}
-                        secureTextEntry
-                        selectionColor={'white'}
-
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
+                        underlineColorAndroid={'gray'}
+                        selectionColor={'gray'}
                     />
 
                     <TextInput
-                        placeholder={'Email'}
-                        secureTextEntry
+                        placeholder={'Forma'}
                         style={styles.textInput}
-                        placeholderTextColor={'rgba(255,255,255,0.4)'}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        underlineColorAndroid={'white'}
-                        selectionColor={'white'}
-
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
+                        underlineColorAndroid={'gray'}
+                        selectionColor={'gray'}
                     />
 
                     <TextInput
-                        placeholder={'Contraseña'}
-                        placeholderTextColor={'rgba(255,255,255,0.4)'}
-                        secureTextEntry
+                        placeholder={'Colindancias'}
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'white'}
+                        underlineColorAndroid={'gray'}
+                        selectionColor={'white'}
+                    />
+                    
+                    <TextInput
+                        placeholder={'Áreas de recreo'}
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
+                        style={styles.textInput}
+                        underlineColorAndroid={'gray'}
+                        selectionColor={'gray'}
+                    />
+                    
+                    <TextInput
+                        placeholder={'Calle'}
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
+                        style={styles.textInput}
+                        underlineColorAndroid={'gray'}
+                        selectionColor={'gray'}
+                    />
+                    
+                    <TextInput
+                        placeholder={'Colonia'}
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
+                        style={styles.textInput}
+                        underlineColorAndroid={'gray'}
+                        selectionColor={'white'}
+                    />
+                    <TextInput
+                        placeholder={'Latitud'}
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
+                        style={styles.textInput}
+                        underlineColorAndroid={'gray'}
                         selectionColor={'white'}
 
                     />
-
                     <TextInput
+                        placeholder={'Longitud'}
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
+                        style={styles.textInput}
+                        underlineColorAndroid={'gray'}
+                        selectionColor={'white'}
                     />
 
+                    <Picker
+                        selectedValue={selectedValue}
+                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                    >
+                        <Picker.Item label="Pénjamo" value="penjamo"/>
+                        <Picker.Item label="Irapuato" value="irapuato"/>
+                        <Picker.Item label="Salamanchester" value="salamanchester"/>
+                        <Picker.Item label="La Piedad" value="piedad"/>
+                    </Picker>
+
+                    <Picker
+                        selectedValue={selectedValue}
+                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                    >
+                        <Picker.Item label="Guanajuato" value="guanajuato"/>
+                        <Picker.Item label="Jalisco" value="jalisco"/>
+                        <Picker.Item label="Michoacan" value="michoacan"/>
+                    </Picker>
+                    
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.btnLogin} >
                             <View style={styles.btnView}>
@@ -83,7 +130,7 @@ export const RegisterPark = () => {
 
                 </View>
             </View>
-        </>
+        </ScrollView>
 
     );
 };
@@ -106,7 +153,7 @@ const styles = StyleSheet.create({
     },
     btnLogin: {
         borderWidth: 2,
-        borderColor: 'rgb(231,231,228)',
+        borderColor: 'rgba(0,128,0,0.9)',
         paddingHorizontal: 20,
         paddingVertical: 5,
         borderRadius: 100,
@@ -116,7 +163,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textButton: {
-        color: 'rgb(229,227,227)',
+        color: 'rgb(0,0,0)',
         fontSize: 20,
         textAlign: 'center',
     },
@@ -125,7 +172,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     btnLinkGoRegister: {
-        borderColor: 'rgba(156,213,248,0.4)',
+        borderColor: 'rgba(128,128,128,1)',
         borderBottomWidth: 1
     }
 });
