@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Text, View, SafeAreaView, ScrollView, VirtualizedList, StyleSheet, StatusBar} from "react-native";
+import {Text, View, SafeAreaView, Image, ScrollView, VirtualizedList, StyleSheet, StatusBar} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { CardPoster } from "../../components/CardPoster";
 
@@ -65,14 +65,15 @@ export const HomeScreen = () => {
                     borderRadius: 100,
                     height: 70,
                     width: 70,
-                    padding: 20,
                     marginLeft: 8,
                     marginRight: 8,
                     marginBottom: 5, 
                 }}
             >
-              <Text style={{fontSize: 20}}>{item.title}</Text>
-              <Text>{item.text}</Text>
+              <Image
+                style={{height: 70, width: 70, borderRadius: 100}}
+                source={{uri: 'https://i1.wp.com/montesdeoro.go.cr/wp-content/uploads/2021/11/Pajaro-Bobo-.-1.jpg?ssl=1'}}
+              />
             </View>
         )
     }
