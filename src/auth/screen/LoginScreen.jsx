@@ -16,7 +16,7 @@ export const LoginScreen = () => {
     const onLogin = () => {
 
         login(email, password)
-        navigation.navigate('BiologicalPark', { screen: 'Home' });
+        navigation.navigate('BiologicalPark');
 
     }
 
