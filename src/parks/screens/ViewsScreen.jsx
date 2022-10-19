@@ -5,7 +5,7 @@ import { Search } from '../../components/Search';
 export const ViewsScreen = () => {
 
 
-    return(
+    return (
         <View
             style={styles.container}
         >

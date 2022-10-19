@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Text, View, SafeAreaView, VirtualizedList, StyleSheet, StatusBar} from "react-native";
+import {Text, View, SafeAreaView, ScrollView, VirtualizedList, StyleSheet, StatusBar} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { CardPoster } from "../../components/CardPoster";
 
@@ -34,6 +34,26 @@ export const HomeScreen = () => {
                 title:"Item 5",
                 text: "Text 5",
             },
+            {
+                title:"Item 5",
+                text: "Text 5",
+            },
+            {
+                title:"Item 5",
+                text: "Text 5",
+            },
+            {
+                title:"Item 5",
+                text: "Text 5",
+            },
+            {
+                title:"Item 5",
+                text: "Text 5",
+            },
+            {
+                title:"Item 5",
+                text: "Text 5",
+            },
           ]
     )
 
@@ -41,14 +61,17 @@ export const HomeScreen = () => {
     const itemsRender = ({item, index}) => {
         return (
             <View style={{
-                backgroundColor:'floralwhite',
-                borderRadius: 5,
-                height: 250,
-                width: 350,
-                padding: 50,
-                marginLeft: 25,
-                marginRight: 25, }}>
-              <Text style={{fontSize: 30}}>{item.title}</Text>
+                    backgroundColor:'floralwhite',
+                    borderRadius: 100,
+                    height: 70,
+                    width: 70,
+                    padding: 20,
+                    marginLeft: 8,
+                    marginRight: 8,
+                    marginBottom: 5, 
+                }}
+            >
+              <Text style={{fontSize: 20}}>{item.title}</Text>
               <Text>{item.text}</Text>
             </View>
         )
@@ -56,8 +79,8 @@ export const HomeScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            
-            <View >
+
+            <View style={{display: 'flex', alignItems: 'center'}}>
                 <FlatList
                     data={carouselItems}
                     renderItem={itemsRender}
@@ -66,15 +89,16 @@ export const HomeScreen = () => {
 
             </View>
 
-            <View style={{ marginTop: 20, display: 'flex', alignItems: 'center' }} >
-                <VirtualizedList
-                    data={carouselItems}
-                    renderItem={({ item }) => <CardPoster specie={item.title} />}
-                    keyExtractor={item => item.key}
-                    getItemCount={getItemCount}
-                    getItem={getItem}
-                />
-            </View>
+
+            <VirtualizedList
+                style={{ marginTop: 20, display: 'flex' }}
+                data={carouselItems}
+                renderItem={({ item }) => <CardPoster specie={item.title} />}
+                keyExtractor={item => item.title}
+                getItemCount={getItemCount}
+                getItem={getItem}
+            />
+
 
         </SafeAreaView>
     )
@@ -83,7 +107,10 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      marginTop: StatusBar.currentHeight,
+      marginTop: StatusBar.currentHeight - 20,
     },
+    scrollView: {
+        marginHorizontal: 10,
+      },
   });
   

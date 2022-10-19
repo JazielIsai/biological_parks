@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, Text, TextInput, StyleSheet} from "react-native";
+import CheckBox from '@react-native-community/checkbox';
 
 export const Search = () => {
+
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
 
     return(
@@ -30,13 +33,55 @@ export const Search = () => {
                         Filtrar:
                     </Text>
 
+                    <View style={styles.filterOption}>
+                        <Text> Parque </Text>
+                        <CheckBox
+                            disabled={false}
+                            value={toggleCheckBox}
+                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        />
+                    </View>
+
+                    <View style={styles.filterOption}>
+                        <Text> Fauna </Text>
+                        <CheckBox
+                            disabled={false}
+                            value={toggleCheckBox}
+                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        />
+                    </View>
                     
+                    <View style={styles.filterOption}>
+                        <Text> Aves </Text>
+                        <CheckBox
+                            disabled={false}
+                            value={toggleCheckBox}
+                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        />
+                    </View>
+
+                    <View style={styles.filterOption}>
+                        <Text> Parques </Text>
+                        <CheckBox
+                            disabled={false}
+                            value={toggleCheckBox}
+                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        />
+                    </View>
+
+                    <View style={styles.filterOption}>
+                        <Text> Parques </Text>
+                        <CheckBox
+                            disabled={false}
+                            value={toggleCheckBox}
+                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        />
+                    </View>
 
                 </View>
 
-
-
             </View>
+
         </View>
     )
 }
@@ -73,4 +118,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 5,
     },
+    filterOption: {
+        flexDirection: 'row',
+        margin: 'auto',
+        alignItems: 'center',
+    }
 });
