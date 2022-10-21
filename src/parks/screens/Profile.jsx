@@ -25,99 +25,102 @@ export const Profile = () => {
 
     return (
         <ScrollView style={{flex:1, display: 'flex'}}>
-        <View style={{flex:1, display: 'flex', alignItems: 'center', marginTop: 9}} >
+            <View style={{flex:1, display: 'flex', alignItems: 'center', marginTop: 9}} >
 
 
-                <View style={styles.imageContainer}>
-                    <Image
-                        source={{uri: url}}
-                        style={{width: 400, height: 200}}
-                    />
-                </View>
-
-                <View style={styles.imgProfile}>
-                    <TouchableOpacity>
+                    <View style={styles.imageContainer}>
                         <Image
-                            style={{width: 150, height: 150, borderRadius: 100}}
-                            source={{uri:'http://www.ateneo.edu/sites/default/files/2021-11/istockphoto-517998264-612x612.jpeg'}}
+                            source={{uri: url}}
+                            style={{width: 400, height: 200}}
                         />
-                    </TouchableOpacity>
-                    <Text 
-                        style={{fontSize: 20, fontWeight: 'bold', marginTop: 10, textAlign: 'center'}}
-                    >
-                        Efrain Gonzalez
-                    </Text>
-                </View>
-
-                <View style={styles.infoBtnContacto}>
-                    
-                    <TouchableOpacity style={{...styles.btn, marginLeft: 25, marginRight: 25}}>
-                        <View>
-                            <Text>
-                                Registrar
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={{...styles.btn, marginLeft: 25, marginRight: 25}}>
-                        <View>
-                            <Text>
-                                Editar perfil
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-
-                </View>
-
-
-                <View>
-
-                    <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10, textAlign: 'center'}}>
-                        Visualizar
-                    </Text>
-                    
-
-                    <View style= {styles.viewsCards}>
-                        <TouchableOpacity style={{...styles.btn, marginLeft: 5, marginRight: 5}}>
-                            <View>
-                                <Text>
-                                    Parques
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={{...styles.btn, marginLeft: 5, marginRight: 5}}>
-                            <View>
-                                <Text>
-                                    Imagenes
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={{...styles.btn, marginLeft: 5, marginRight: 5}}>
-                            <View>
-                                <Text>
-                                    Ficha Biologica
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
                     </View>
 
-                </View>
+                    <View style={styles.imgProfile}>
+                        <TouchableOpacity>
+                            <Image
+                                style={{width: 150, height: 150, borderRadius: 100}}
+                                source={{uri:'http://www.ateneo.edu/sites/default/files/2021-11/istockphoto-517998264-612x612.jpeg'}}
+                            />
+                        </TouchableOpacity>
+                        <Text 
+                            style={{fontSize: 20, fontWeight: 'bold', marginTop: 10, textAlign: 'center'}}
+                        >
+                            Efrain Gonzalez
+                        </Text>
+                    </View>
 
-                <SafeAreaView style={styles.container}>
-                    <VirtualizedList
-                        data={DATA}
-                        initialNumToRender={4}
-                        renderItem={({ item }) => <CardPoster specie={item.title} />}
-                        keyExtractor={item => item.id}
-                        getItemCount={getItemCount}
-                        getItem={getItem}
-                    />
-                </SafeAreaView>
+                    <View style={styles.infoBtnContacto}>
+                        
+                        <TouchableOpacity style={{...styles.btn, marginLeft: 25, marginRight: 25}}>
+                            <View>
+                                <Text>
+                                    Registrar
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={{...styles.btn, marginLeft: 25, marginRight: 25}}>
+                            <View>
+                                <Text>
+                                    Editar perfil
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+
+                    </View>
 
 
-        </View>
+                    <View>
+
+                        <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10, textAlign: 'center'}}>
+                            Visualizar
+                        </Text>
+                        
+
+                        <View style= {styles.viewsCards}>
+                            <TouchableOpacity 
+                                style={{...styles.btn, marginLeft: 5, marginRight: 5}}
+                                
+                            >
+                                <View>
+                                    <Text>
+                                        Parques
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={{...styles.btn, marginLeft: 5, marginRight: 5}}>
+                                <View>
+                                    <Text>
+                                        Imagenes
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={{...styles.btn, marginLeft: 5, marginRight: 5}}>
+                                <View>
+                                    <Text>
+                                        Ficha Biologica
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
+
+                    <SafeAreaView style={styles.container}>
+                        <VirtualizedList
+                            data={DATA}
+                            initialNumToRender={4}
+                            renderItem={({ item }) => <CardPoster specie={item.title} />}
+                            keyExtractor={item => item.id}
+                            getItemCount={getItemCount}
+                            getItem={getItem}
+                        />
+                    </SafeAreaView>
+
+
+            </View>
         </ScrollView>
     )
 

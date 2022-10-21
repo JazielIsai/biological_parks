@@ -1,13 +1,17 @@
 import React from "react";
-import {View, Text, TextInput, StyleSheet} from "react-native";
+import {View, Text, TextInput, StyleSheet, VirtualizedList, SafeAreaView} from "react-native";
 
 export const ViewParks = () => {
 
-    
 
     return (
-        <View>
-
-        </View>
-    )
+        <SafeAreaView>
+            <VirtualizedList
+                data={[]}
+                renderItem={({item}) => <Text>{item}</Text>}
+                keyExtractor={item => item}
+                
+            />
+        </SafeAreaView>
+    );
 };

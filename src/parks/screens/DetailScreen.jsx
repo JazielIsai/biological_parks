@@ -7,7 +7,7 @@ export const DetailScreen = () => {
 
     return (
         <View>
-            <Text></Text>
+            <Text> </Text>
         </View>
     )
 };

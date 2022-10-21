@@ -10,12 +10,13 @@ const Tab = createBottomTabNavigator();
 
 
 export const RoutesParks = () => {
+
     return (
         <Tab.Navigator
             initialRouteName={'Home'}
             screenOptions={{ headerShown: false, tabBarActiveTintColor: '#e91e63', }}
         >
-            <Tab.Screen 
+            <Tab.Screen
                 name={'View'}
                 component={ViewsScreen}
                 options={{
