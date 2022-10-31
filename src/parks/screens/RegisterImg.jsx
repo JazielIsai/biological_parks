@@ -14,8 +14,14 @@ export const RegisterImg = () => {
                 Imagen:
             </Text>
             <TextInput
-                placeholder="Nombre de la imagen"
-            />
+                        placeholder={'Nombre comun'}
+                        style={styles.textInput}
+                        placeholderTextColor={'rgba(128,128,128,0.8)'}
+                        underlineColorAndroid={'gray'}
+                        selectionColor={'gray'}
+
+                    />
+
             <TextInput
                 placeholder="Nombre de la imagen"
             />
@@ -39,3 +45,17 @@ export const RegisterImg = () => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    textInput: {
+        height: 50,
+        width: 200,
+        marginVertical: 10,
+    }
+});
