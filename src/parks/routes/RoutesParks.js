@@ -28,14 +28,14 @@ export const RoutesParks = () => {
                 component={HomeScreen} 
                 options={{
                     title: 'Inicio',
-                }} 
+                }}
             />
             <Tab.Screen 
                 name="Register" 
                 component={RegisterBiologicalScreen}
                 options={{
                     title: 'Registrar',
-                }} 
+                }}
             />
             <Tab.Screen 
                 name="Profile" 

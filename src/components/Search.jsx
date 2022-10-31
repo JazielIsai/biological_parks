@@ -1,87 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, Text, TextInput, StyleSheet} from "react-native";
-import CheckBox from '@react-native-community/checkbox';
+import { useFetchGet } from '../hooks/useFetchGet';
+import { CardText } from './CardText';
 
-export const Search = () => {
+export const Search = ({getSearch}) => {
+    console.log(" This is the search ",getSearch);
+    const [search, setSearch] = useState('');
+    const [searchData, setSearchData] = useState([]);
+    const { data } = useFetchGet(`get_all_biologic_data_by_scientific_data&search_scientific_data=${search}`);
 
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
-
+    useEffect ( () => {
+        try {
+            console.log(JSON.parse(data));
+            setSearch(getSearch);
+            setSearchData(JSON.parse(data));
+        } catch (error) {
+            console.log("The error is: ",error);
+        }
+    }, [data, getSearch] )
 
     return(
-        <View
-            style={styles.container}
-        >
-            <View style={styles.filter}>
-                
-                <View style={styles.search}>
-                    <Text
-                        style={styles.searchText}
-                    >
-                        Buscar
-                    </Text>
-                    <TextInput
-                        placeholder={'Buscar'}  
-                        underlineColorAndroid={'blue'}
-                        style={styles.searchTextInput}
-                    />
-                </View>
+        <View>
+            {
+                searchData !== null &&
+                searchData !== undefined &&
+                    searchData.map( (item, index) => (
+                        <CardText 
+                            key={index}
+                            title={item.scientificName}
+                            subtitle={item.commonName}
+                            description={item.description}
+                            link={item.user}
 
-                <View style={styles.optionFilter} >
-                    <Text
-                        style={styles.searchText}
-                    > 
-                        Filtrar:
-                    </Text>
-
-                    <View style={styles.filterOption}>
-                        <Text> Parque </Text>
-                        <CheckBox
-                            disabled={false}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
                         />
-                    </View>
-
-                    <View style={styles.filterOption}>
-                        <Text> Fauna </Text>
-                        <CheckBox
-                            disabled={false}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                        />
-                    </View>
-                    
-                    <View style={styles.filterOption}>
-                        <Text> Aves </Text>
-                        <CheckBox
-                            disabled={false}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                        />
-                    </View>
-
-                    <View style={styles.filterOption}>
-                        <Text> Parques </Text>
-                        <CheckBox
-                            disabled={false}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                        />
-                    </View>
-
-                    <View style={styles.filterOption}>
-                        <Text> Parques </Text>
-                        <CheckBox
-                            disabled={false}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                        />
-                    </View>
-
-                </View>
-
-            </View>
-
+                    ))
+            }
         </View>
     )
 }
@@ -90,37 +43,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    filter: {
-        margin: 4,
-        
-    },
-    search: {
-        flexDirection: 'row',
-        margin: 'auto',
-        alignItems: 'center',
-        marginBottom: 5,
-          
-    },
-    searchText:{
-        marginRight: 6,
-        marginLeft: 6,
-        fontSize: 14,
-    },
-    searchTextInput: {
-        display: 'flex',
-        width: 250,
-        height: 40,
-        fontSize: 14,
-    },
-    optionFilter: {
-        flexDirection: 'row',
-        margin: 'auto',
-        alignItems: 'center',
-        marginBottom: 5,
-    },
-    filterOption: {
-        flexDirection: 'row',
-        margin: 'auto',
-        alignItems: 'center',
-    }
+
 });

@@ -5,7 +5,9 @@ export const ViewBiological = () => {
 
     return (
         <View>
-
+            <Text> 
+                
+            </Text>
         </View>
     )
 }

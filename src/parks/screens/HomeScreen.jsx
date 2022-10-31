@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {Text, View, SafeAreaView, Image, ScrollView, VirtualizedList, StyleSheet, StatusBar} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { CardPoster } from "../../components/CardPoster";
+import { Background } from "../components/Background";
 
 const getItem = (data, index) => ({
     id: Math.random().toString(12).substring(0),
@@ -81,7 +82,7 @@ export const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
 
-            <View style={{display: 'flex', alignItems: 'center'}}>
+            <View style={{display: 'flex', alignItems: 'center', marginTop: 20}}>
                 <FlatList
                     data={carouselItems}
                     renderItem={itemsRender}
@@ -108,7 +109,7 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      marginTop: StatusBar.currentHeight - 20,
+      backgroundColor: 'white'
     },
     scrollView: {
         marginHorizontal: 10,

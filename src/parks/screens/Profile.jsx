@@ -1,7 +1,13 @@
 import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {View, Text, TextInput, StyleSheet, TouchableOpacity, Image, VirtualizedList, SafeAreaView} from "react-native";
 import { ScrollView } from 'react-native-gesture-handler';
 import { CardPoster } from '../../components/CardPoster';
+import { BtnLink } from '../components/BtnLink';
+import { Background } from '../components/Background';
+
+const Stack = createNativeStackNavigator();
+
 
 const DATA = [];
 
@@ -24,7 +30,8 @@ export const Profile = () => {
     const url = 'https://www.bbvaopenmind.com/wp-content/uploads/2013/02/BBVA-OpenMind-Fronteras-9-El-siglo-del-gen-Biologi%CC%81a-molecular-y-gene%CC%81tica-Gines-morata.jpg';
 
     return (
-        <ScrollView style={{flex:1, display: 'flex'}}>
+        <ScrollView style={{flex:1, display: 'flex', backgroundColor: 'white'}}>
+
             <View style={{flex:1, display: 'flex', alignItems: 'center', marginTop: 9}} >
 
 
@@ -51,21 +58,17 @@ export const Profile = () => {
 
                     <View style={styles.infoBtnContacto}>
                         
-                        <TouchableOpacity style={{...styles.btn, marginLeft: 25, marginRight: 25}}>
-                            <View>
-                                <Text>
-                                    Registrar
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
+                        <BtnLink
+                            onPress = {() => {}}  
+                            text='Registrar'
+                            stylesBtnLink = {{ marginLeft: 25, marginRight: 25}}
+                        />
 
-                        <TouchableOpacity style={{...styles.btn, marginLeft: 25, marginRight: 25}}>
-                            <View>
-                                <Text>
-                                    Editar perfil
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
+                        <BtnLink
+                            onPress = {() => {}}  
+                            text='Editar perfil'
+                            stylesBtnLink = {{ marginLeft: 25, marginRight: 25}}
+                        />
 
                     </View>
 
@@ -78,32 +81,25 @@ export const Profile = () => {
                         
 
                         <View style= {styles.viewsCards}>
-                            <TouchableOpacity 
-                                style={{...styles.btn, marginLeft: 5, marginRight: 5}}
-                                
-                            >
-                                <View>
-                                    <Text>
-                                        Parques
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
 
-                            <TouchableOpacity style={{...styles.btn, marginLeft: 5, marginRight: 5}}>
-                                <View>
-                                    <Text>
-                                        Imagenes
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
+                            <BtnLink
+                                onPress = {() => {}}  
+                                text='Parques'
+                                stylesBtnLink = {{ marginLeft: 5, marginRight: 5}}
+                            />
 
-                            <TouchableOpacity style={{...styles.btn, marginLeft: 5, marginRight: 5}}>
-                                <View>
-                                    <Text>
-                                        Ficha Biologica
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
+                            <BtnLink
+                                onPress = {() => {}}  
+                                text='Imagenes'
+                                stylesBtnLink = {{ marginLeft: 5, marginRight: 5}}
+                            />
+
+                            <BtnLink
+                                onPress = {() => {}}  
+                                text='Ficha Biologica'
+                                stylesBtnLink = {{ marginLeft: 5, marginRight: 5}}
+                            />
+
                         </View>
 
                     </View>
@@ -159,22 +155,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
 
-    },
-    btn : {
-        backgroundColor: 'white',
-        borderRadius: 10,
-        width: 120,
-        height: 40,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
     },
     viewsCards:{
         display: 'flex',
