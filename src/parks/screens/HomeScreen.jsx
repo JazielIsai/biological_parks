@@ -1,62 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Text, View, SafeAreaView, Image, ScrollView, VirtualizedList, StyleSheet, StatusBar} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import {useFetchGet} from '../../hooks/useFetchGet';
+
 import { CardPoster } from "../../components/CardPoster";
 import { Background } from "../components/Background";
 
-const getItem = (data, index) => ({
-    id: Math.random().toString(12).substring(0),
-    title: `Item ${index+1}`
-  });
   
-  const getItemCount = (data) => 50;
 
 export const HomeScreen = () => {
 
-    const [carouselItems, setCarouselItems] = useState(
-        [
-            {
-                title:"Item 1",
-                text: "Text 1",
-            },
-            {
-                title:"Item 2",
-                text: "Text 2",
-            },
-            {
-                title:"Item 3",
-                text: "Text 3",
-            },
-            {
-                title:"Item 4",
-                text: "Text 4",
-            },
-            {
-                title:"Item 5",
-                text: "Text 5",
-            },
-            {
-                title:"Item 5",
-                text: "Text 5",
-            },
-            {
-                title:"Item 5",
-                text: "Text 5",
-            },
-            {
-                title:"Item 5",
-                text: "Text 5",
-            },
-            {
-                title:"Item 5",
-                text: "Text 5",
-            },
-            {
-                title:"Item 5",
-                text: "Text 5",
-            },
-          ]
-    )
+    const {data} = useFetchGet('get_all_relation_biologic_data_and_parks_data_with_img_way_desc');
+
+    const [cardItems, setCardItems] = useState([]);
+
+
+    useEffect( ()=> {
+
+        try {
+            setCardItems(JSON.parse(data));
+        } catch (error) {
+            console.log("The error is: ",error);
+        }
+
+    },[data] )
 
 
     const itemsRender = ({item, index}) => {
@@ -82,24 +49,32 @@ export const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
 
-            <View style={{display: 'flex', alignItems: 'center', marginTop: 20}}>
-                <FlatList
-                    data={carouselItems}
-                    renderItem={itemsRender}
-                    horizontal={true}
-                />
+            {
+                cardItems !== null &&
+                cardItems !== undefined && (
+                    <View style={{display: 'flex', alignItems: 'center', marginTop: 20}}>
+                        <FlatList
+                            data={cardItems}
+                            renderItem={itemsRender}
+                            horizontal={true}
+                        />
 
-            </View>
+                    </View>
+                )
+            }
 
+            {
+                cardItems !== null &&
+                cardItems !== undefined && (
+                    <FlatList
+                        style={{ marginTop: 20, display: 'flex' }}
+                        data={cardItems}
+                        renderItem={({ item }) => <CardPoster data={item} commonName={item.commonName} namePark={item.NamePark} />}
 
-            <VirtualizedList
-                style={{ marginTop: 20, display: 'flex' }}
-                data={carouselItems}
-                renderItem={({ item }) => <CardPoster specie={item.title} />}
-                keyExtractor={item => item.title}
-                getItemCount={getItemCount}
-                getItem={getItem}
-            />
+                    />
+                )
+            }
+
 
 
         </SafeAreaView>

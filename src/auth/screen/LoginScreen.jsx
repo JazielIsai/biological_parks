@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image, Butto
 import {useNavigation} from '@react-navigation/native';
 import {Background} from "../components/Background";
 import {AuthContext} from "../context/AuthContext";
+import { requestGet } from '../../helpers/requestGet';
 
 export const LoginScreen = () => {
 
@@ -14,9 +15,22 @@ export const LoginScreen = () => {
     const [password, setPassword] = useState('');
 
     const onLogin = () => {
+        
+        requestGet(`checking_if_exist_user&email=${email}&password=${password}`)
+            .then((response) => {
+                console.log(response);
+                if (response.length > 2) {
+                    response = JSON.parse(response)[0];
+                    login(response.id, response.email, response.firstname, response.lastname, response.academicTitle, response.id_rol, response.Rol);
+                    navigation.navigate('BiologicalPark');
+                } else {
+                    Alert.alert('Error', 'Usuario o contraseña incorrectos');
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
 
-        login(email, password)
-        navigation.navigate('BiologicalPark');
 
     }
 

@@ -2,9 +2,11 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {View, Text, TextInput, StyleSheet, TouchableOpacity, Image, VirtualizedList, SafeAreaView} from "react-native";
 import { ScrollView } from 'react-native-gesture-handler';
+import {useFetchGet} from '../../hooks/useFetchGet';
 import { CardPoster } from '../../components/CardPoster';
 import { BtnLink } from '../components/BtnLink';
-import { Background } from '../components/Background';
+import {useNavigation} from '@react-navigation/native';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -18,16 +20,14 @@ const getItem = (data, index) => ({
 
 const getItemCount = (data) => 50;
 
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
 
 
 export const Profile = () => {
 
+    const {data} = useFetchGet('');
     const url = 'https://www.bbvaopenmind.com/wp-content/uploads/2013/02/BBVA-OpenMind-Fronteras-9-El-siglo-del-gen-Biologi%CC%81a-molecular-y-gene%CC%81tica-Gines-morata.jpg';
+
+    const navigation = useNavigation();
 
     return (
         <ScrollView style={{flex:1, display: 'flex', backgroundColor: 'white'}}>
@@ -65,7 +65,7 @@ export const Profile = () => {
                         />
 
                         <BtnLink
-                            onPress = {() => {}}  
+                            onPress = {() => {navigation.navigate('Account')}}  
                             text='Editar perfil'
                             stylesBtnLink = {{ marginLeft: 25, marginRight: 25}}
                         />

@@ -10,6 +10,7 @@ import { Account } from '../auth/screen/Account';
 import { ViewParks } from '../parks/screens/ViewParks';
 import { ViewBiological } from '../parks/screens/ViewBiological';
 import { ViewImg } from '../parks/screens/ViewImg';
+import { DetailScreen } from '../parks/screens/DetailScreen';
 //import RoutesParks from "../parks/routes/RoutesParks";
 
 const Stack = createNativeStackNavigator();
@@ -37,7 +38,7 @@ export default function RouterMain() {
                             <Stack.Screen name='ViewParks' component={ViewParks} />
                             <Stack.Screen name='ViewBiological' component={ViewBiological} />
                             <Stack.Screen name='ViewImg' component={ViewImg} />
-
+                            <Stack.Screen name='DetailScreen' component={DetailScreen} />
                         </Stack.Group>
                     )
                         : (
@@ -47,8 +48,6 @@ export default function RouterMain() {
                             </Stack.Group>
                         )
                 }
-
-
 
             </Stack.Navigator>
 

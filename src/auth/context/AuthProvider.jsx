@@ -20,12 +20,18 @@ export const AuthProvider = ({children}) => {
 
     const [authState, dispatch] = useReducer(authReducer, initialState, init);
 
-    const login = ( name = 'john', password = '123' ) => {
+    const login = ( id, email, firstname = '', lastname = '', academicTitle = '', id_rol, Rol ) => {
         const user = {
-            id: 'ABC',
-            name: name,
-            password: password
+            id: id,
+            email: email,
+            firstname: firstname,
+            lastname,
+            academicTitle,
+            id_rol,
+            Rol
         }
+        
+        console.log("The user is: ", user);
 
         const action = {
             type: types.login,
