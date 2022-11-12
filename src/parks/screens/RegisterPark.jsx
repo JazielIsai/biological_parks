@@ -1,18 +1,80 @@
-import { Picker } from '@react-native-picker/picker';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image,ScrollView } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+import { AuthContext } from '../../auth/context/AuthContext';
+import { useFetchGet } from '../../hooks/useFetchGet';
+import { useForm } from '../../hooks/useForm';
+import { requestPost } from '../../helpers/requestPost';
 
 
 
 export const RegisterPark = () => {
-    const [selectedValue, setSelectedValue]=useState("guanajuato");
-    // con
+    
+    const {user} = useContext(AuthContext);
+
+    const [getCityState, setGetCityState] = useState([]);
+    const [getMunicipaly, setGetMunicipaly] = useState([]);
+
+    const {onChange, onReset, form} = useForm({
+        cityStateId: '1',
+        nameMunicipalityId: '1',
+    });
+    
+    const {data : getAllCityState } = useFetchGet('get_all_cityState');
+    const {data :  getAllMunicipalyByCityStateId} = useFetchGet(`get_all_municipality_by_id&cityState_id=${form?.cityStateId}`);
+
+    useEffect ( ( ) => {
+
+        try {
+            setGetCityState(JSON.parse(getAllCityState));
+            setGetMunicipaly(JSON.parse(getAllMunicipalyByCityStateId));
+
+        } catch (err) {
+            console.log(err);
+        }
+
+    }, [getAllCityState, getAllMunicipalyByCityStateId] )
+
+    const sendPost = () => {
+
+        const body = {
+            namePark: form.namePark,
+            trainingbackground: form.trainingbackground,
+            areaha: form.areaha,
+            form: form.form,
+            boundaries: form.boundaries,
+            recreationareas: form.recreationareas,
+            street: form.street,
+            suburb: form.suburb,
+            latitude: parseFloat(form.latitude),
+            length: parseFloat(form.length),
+            idcitystates: form.cityStateId,
+            idmunicipality: form.nameMunicipalityId,
+            idUser: user.id
+        }
+
+        console.log(body);
+
+        const formData = new FormData();
+
+        formData.append('data', JSON.stringify(body));
+
+        requestPost('add_park', formData)
+            .then( res => {
+                console.log(res);
+                onReset({
+                    cityStateId: '1',
+                    nameMunicipalityId: '1',
+                });
+            } )
+    }
+
 
     return (
         <ScrollView>
             <View style={styles.container}>
                 <Text
-                    style={{color: 'black', fontWeight: 'bold', fontSize: 18}}
+                    style={{color: 'black', fontWeight: 'bold', fontSize: 18, marginTop: 15}}
                 >
                     Registrar parque
                 </Text>
@@ -25,7 +87,8 @@ export const RegisterPark = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         underlineColorAndroid={'gray'}
                         selectionColor={'gray'}
-
+                        onChangeText={ (value) => onChange(value, 'namePark') }
+                        value={form?.namePark}
                     />
 
                     <TextInput
@@ -34,6 +97,8 @@ export const RegisterPark = () => {
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
                         selectionColor={'gray'}
+                        onChangeText={ (value) => onChange(value, 'trainingbackground') }
+                        value={form?.trainingbackground}
                     />
 
                     <TextInput
@@ -42,6 +107,8 @@ export const RegisterPark = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         underlineColorAndroid={'gray'}
                         selectionColor={'gray'}
+                        onChangeText={ (value) => onChange(value, 'areaha') }
+                        value={form?.areaha}
                     />
 
                     <TextInput
@@ -50,6 +117,8 @@ export const RegisterPark = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         underlineColorAndroid={'gray'}
                         selectionColor={'gray'}
+                        onChangeText={ (value) => onChange(value, 'form') }
+                        value={form?.form}
                     />
 
                     <TextInput
@@ -58,6 +127,8 @@ export const RegisterPark = () => {
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
                         selectionColor={'white'}
+                        onChangeText={ (value) => onChange(value, 'boundaries') }
+                        value={form?.boundaries}
                     />
                     
                     <TextInput
@@ -66,6 +137,8 @@ export const RegisterPark = () => {
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
                         selectionColor={'gray'}
+                        onChangeText={ (value) => onChange(value, 'recreationareas') }
+                        value={form?.recreationareas}
                     />
                     
                     <TextInput
@@ -74,6 +147,8 @@ export const RegisterPark = () => {
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
                         selectionColor={'gray'}
+                        onChangeText={ (value) => onChange(value, 'street') }
+                        value={form?.street}
                     />
                     
                     <TextInput
@@ -82,6 +157,8 @@ export const RegisterPark = () => {
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
                         selectionColor={'white'}
+                        onChangeText={ (value) => onChange(value, 'suburb') }
+                        value={form?.suburb}
                     />
                     <TextInput
                         placeholder={'Latitud'}
@@ -89,37 +166,56 @@ export const RegisterPark = () => {
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
                         selectionColor={'white'}
-
+                        onChangeText={ (value) => onChange(value, 'latitude') }
+                        value={form?.latitude}
+                        keyboardType={'numeric'}
                     />
+
                     <TextInput
                         placeholder={'Longitud'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
                         selectionColor={'white'}
+                        onChangeText={ (value) => onChange(value, 'length') }
+                        value={form?.length}
+                        keyboardType={'numeric'}
                     />
 
                     <Picker
-                        selectedValue={selectedValue}
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        selectedValue={form.cityStateId}
+                        onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'cityStateId')}
                     >
-                        <Picker.Item label="Pénjamo" value="penjamo"/>
-                        <Picker.Item label="Irapuato" value="irapuato"/>
-                        <Picker.Item label="Salamanchester" value="salamanchester"/>
-                        <Picker.Item label="La Piedad" value="piedad"/>
+                        {
+                            getCityState !== undefined &&
+                            getCityState !== null && (
+                                getCityState.map( (item, index) => (
+                                    <Picker.Item key={index} label={item.nameCityStates} value={item.id} />
+                                ))
+                            )
+                        }
+
                     </Picker>
 
                     <Picker
-                        selectedValue={selectedValue}
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        selectedValue={form.nameMunicipalityId}
+                        onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'nameMunicipalityId')}
                     >
-                        <Picker.Item label="Guanajuato" value="guanajuato"/>
-                        <Picker.Item label="Jalisco" value="jalisco"/>
-                        <Picker.Item label="Michoacan" value="michoacan"/>
+                        {
+                            getMunicipaly !== undefined &&
+                            getMunicipaly !== null && (
+                                getMunicipaly.map( (item, index) => (
+                                    <Picker.Item key={index} label={item.nameMunicipality} value={item.id} />
+                                ))
+                            )
+                        }
                     </Picker>
                     
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.btnLogin} >
+                        <TouchableOpacity 
+                            style={styles.btnLogin}
+                            onPress={sendPost} 
+                        >
                             <View style={styles.btnView}>
                                 <Text style={styles.textButton}> Registrarse </Text>
                             </View>
@@ -139,6 +235,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -150,6 +247,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         alignItems: 'center',
         marginTop: 50,
+        marginBottom: 40
     },
     btnLogin: {
         borderWidth: 2,

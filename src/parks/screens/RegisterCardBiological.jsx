@@ -1,25 +1,69 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
+import {AuthContext} from '../../auth/context/AuthContext.js';
 import {Picker} from '@react-native-picker/picker';
-import DatePicker from 'react-native-datepicker';
+import { useFetchGet } from '../../hooks/useFetchGet';
+import { useForm } from '../../hooks/useForm';
+import {requestPost} from '../../helpers/requestPost';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image,ScrollView,Button} from "react-native";
 
 
 
 export const RegisterCardBiological = () => {
-    const [selectedCategoryValue, setSelectedCategoryValue]=useState("");
-    const [selectedParkValue, setSelectedParkValue]=useState("");
-    const [selectedUserValue, setSelectedUserValue]=useState("");
-    
-    const [date, setDate] = useState(new Date());
-    
 
-   
+    const {user} = useContext(AuthContext);
+
+    const [getCategorie, setGetCategorie] = useState([]);
+    
+    const {onChange, onReset, form} = useForm({});
+
+    const {data : getAllCategory} = useFetchGet('get_all_category');
+    
+    useEffect ( ( ) => {
+
+        try {
+            setGetCategorie(JSON.parse(getAllCategory));
+
+        } catch (err) {
+            console.log(err);
+        }
+
+    }, [getAllCategory] )
+
+    const onSendPost = () => {
+        console.log(form);
+
+        const body = {
+            commonName: form.commonName,
+            scientificName: form.scientificName,
+            description: form.description,
+            geographicalDistribution: form.geographicalDistribution,
+            naturalHistory: form.naturalHistory,
+            statusConservation: form.statusConservation == '1' ? true : false,
+            authorBiologicData: form.authorBiologicData,
+            idCategory: form.idCategory,
+            idUser: user.id
+        }
+
+        console.log(body);
+
+        const formData = new FormData();
+
+        formData.append('data', JSON.stringify(body));
+
+        requestPost('add_biologic_data', formData)
+            .then (res => {
+                console.log(res);
+                onReset({});
+            })
+
+    }
+
 
     return (
         <ScrollView>
             <View style={styles.container}>
                 <Text
-                    style={{color: 'black', fontWeight: 'bold', fontSize: 18}}
+                    style={{color: 'black', fontWeight: 'bold', fontSize: 18, marginTop: 15}}
                 >
                     Ficha biologíca
                 </Text>
@@ -32,6 +76,8 @@ export const RegisterCardBiological = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         underlineColorAndroid={'gray'}
                         selectionColor={'gray'}
+                        onChangeText={ text => onChange(text, 'commonName') }
+                        value={form?.commonName}
 
                     />
 
@@ -41,17 +87,9 @@ export const RegisterCardBiological = () => {
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
                         selectionColor={'gray'} 
+                        onChangeText={ text => onChange(text, 'scientificName') }
+                        value={form?.scientificName}
                     />
-
-                    <TextInput
-                        placeholder={'Fecha de avistamiemnto'}
-                        style={styles.textInput}
-                        placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
-                    />
-                    
-                   <DatePicker date={date} onDateChange={setDate} />
                     
                     <TextInput
                         placeholder={'Descripcion'}
@@ -59,18 +97,18 @@ export const RegisterCardBiological = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         underlineColorAndroid={'gray'}
                         selectionColor={'gray'}
-                        maxLength={30}
                         multiline={true}
-                    />
-                    
-                    
+                        onChangeText={ text => onChange(text, 'description') }
+                        value={form?.description}
+                    />                    
 
                     <TextInput
                         placeholder={'Dsitrubucion geografica'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
-                        selectionColor={'white'}
+                        onChangeText={ text => onChange(text, 'geographicalDistribution') }
+                        value={form?.geographicalDistribution}
                     />
                     
                     <TextInput
@@ -79,62 +117,52 @@ export const RegisterCardBiological = () => {
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
                         selectionColor={'gray'}
+                        onChangeText={ text => onChange(text, 'naturalHistory') }
+                        value={form?.naturalHistory}
                     />
+
+                    <Picker
+                        selectedValue={form.statusConservation}
+                        onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'statusConservation') }
+                    >
+                        <Picker.Item label={'Estatus de conservación'} />
+                        <Picker.Item label={'Si'} value={'1'} />
+                        <Picker.Item label={'No'} value={'0'} />
+                    </Picker>
+
                     
                     <TextInput
-                        placeholder={'Estado de conservacion'}
+                        placeholder={'Autor de la ficha'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
-                    />
-                    
-                    <TextInput
-                        placeholder={'Autor'}
-                        placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'white'}
+                        onChangeText={ text => onChange(text, 'authorBiologicData') }
+                        value={form?.authorBiologicData}
                     />
                 
                     <Picker
-                        selectedValue={selectedCategoryValue}
-                        onValueChange={(itemValue, itemIndex) => setSelectedCategoryValue(itemValue)}
+                        selectedValue={form.idCategory}
+                        onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'idCategory')}
                     >
-                        <Picker.Item label="Category 1" value="category 1"/>
-                        <Picker.Item label="Category 2" value="category 2"/>
-                        <Picker.Item label="Category 3" value="category 3"/>
-                        <Picker.Item label="Category 4" value="category 4"/>
-                    </Picker>
-
-                    <Picker
-                        selectedValue={selectedParkValue}
-                        onValueChange={(itemValue, itemIndex) => setSelectedParkValue(itemValue)}
-                    >
-                        <Picker.Item label="Park 1" value="park 1"/>
-                        <Picker.Item label="Park 2" value="park 2"/>
-                        <Picker.Item label="Park 3" value="park 3"/>
-                        <Picker.Item label="Park 4" value="park 4"/>
-                    </Picker>
-
-                    <Picker
-                        selectedValue={selectedUserValue}
-                        onValueChange={(itemValue, itemIndex) => setSelectedUserValue(itemValue)}
-                    >
-                        <Picker.Item label="User 1" value="user 1"/>
-                        <Picker.Item label="User 2" value="user 2"/>
-                        <Picker.Item label="User 3" value="user 3"/>
+                        {
+                            getCategorie !== undefined && 
+                            getCategorie !== null && 
+                                getCategorie.map( (item, index) => (
+                                    <Picker.Item key={index} label={item.description} value={item.id} />
+                                ))
+                        }
                     </Picker>
                     
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.btnLogin} >
+                        <TouchableOpacity 
+                            style={styles.btnLogin}
+                            onPress={onSendPost}
+                        >
                             <View style={styles.btnView}>
                                 <Text style={styles.textButton}> Registrarse </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
-
-
 
                 </View>
             </View>
@@ -146,6 +174,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -157,6 +186,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         alignItems: 'center',
         marginTop: 50,
+        marginBottom: 40
     },
     btnLogin: {
         borderWidth: 2,

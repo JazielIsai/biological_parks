@@ -54,6 +54,7 @@ export const DetailScreen = ({navigation}) => {
                             data={images}
                             renderItem={ ({item}) => (<CardImg data={item} />) }
                             horizontal={true}
+                            keyExtractor={ (item) => item.id }
                         />
                     )
                 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Text, View, SafeAreaView, Image, ScrollView, VirtualizedList, StyleSheet, StatusBar} from "react-native";
+import {Text, View, SafeAreaView, Image, StyleSheet, StatusBar} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import {useFetchGet} from '../../hooks/useFetchGet';
 
@@ -48,7 +48,7 @@ export const HomeScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-
+            
             {
                 cardItems !== null &&
                 cardItems !== undefined && (
@@ -57,6 +57,8 @@ export const HomeScreen = () => {
                             data={cardItems}
                             renderItem={itemsRender}
                             horizontal={true}
+                            keyExtractor={ (item) => item.id }
+
                         />
 
                     </View>
@@ -70,12 +72,11 @@ export const HomeScreen = () => {
                         style={{ marginTop: 20, display: 'flex' }}
                         data={cardItems}
                         renderItem={({ item }) => <CardPoster data={item} commonName={item.commonName} namePark={item.NamePark} />}
+                        keyExtractor={ (item) => item.id }
 
                     />
                 )
             }
-
-
 
         </SafeAreaView>
     )
