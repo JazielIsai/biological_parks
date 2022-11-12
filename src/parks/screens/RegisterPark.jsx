@@ -217,12 +217,10 @@ export const RegisterPark = () => {
                             onPress={sendPost} 
                         >
                             <View style={styles.btnView}>
-                                <Text style={styles.textButton}> Registrarse </Text>
+                                <Text style={styles.textButton}> Guardar </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
-
-
 
                 </View>
             </View>
@@ -241,7 +239,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         height: 50,
-        width: 200,
+        width: 250,
         marginVertical: 10,
     },
     buttonContainer: {
@@ -250,11 +248,16 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
     btnLogin: {
-        borderWidth: 2,
-        borderColor: 'rgba(0,128,0,0.9)',
+        shadowColor: '#1e44f1de',
+        shadowOffset: { width: 1, height: 2 },
+        shadowOpacity: 0.9,
+        shadowRadius: 2,
+        elevation: 8,
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        width: 200,
         paddingHorizontal: 20,
         paddingVertical: 5,
-        borderRadius: 100,
     },
     btnView: {
         justifyContent: 'center',
@@ -263,6 +266,7 @@ const styles = StyleSheet.create({
     textButton: {
         color: 'rgb(0,0,0)',
         fontSize: 20,
+        fontWeight: '400',
         textAlign: 'center',
     },
     btnLink: {

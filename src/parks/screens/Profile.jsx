@@ -89,10 +89,8 @@ export const Profile = () => {
                 <View style={{flex: 1, display: 'flex', alignItems: 'center', marginTop: 9}} >
 
                     <EncabezadoProfile uirBackground={url} uriProfile={uriProfile} userName={user.firstname} />
-                    
 
                     <View style={styles.infoBtnContacto}>
-                        
                         <BtnLink
                             onPress = {() => navigation.navigate('Register') }  
                             text='Registrar'
@@ -104,19 +102,16 @@ export const Profile = () => {
                             text='Editar perfil'
                             stylesBtnLink = {{ marginLeft: 25, marginRight: 25}}
                         />
-
                     </View>
 
 
                     <View>
-
                         <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10, textAlign: 'center'}}>
                             Visualizar
                         </Text>
                         
 
                         <View style= {styles.viewsCards}>
-
                             <BtnLink
                                 onPress = {() => {navigation.navigate('ViewParks')}}  
                                 text='Parques'
@@ -134,7 +129,6 @@ export const Profile = () => {
                                 text='Ficha Biologica'
                                 stylesBtnLink = {{ marginLeft: 5, marginRight: 5}}
                             />
-
                         </View>
 
                     </View>
@@ -143,7 +137,7 @@ export const Profile = () => {
                         <FlatList
                             data={joinTable}
                             renderItem={itemsRender}
-                            keyExtractor={item => item.id}
+                            keyExtractor={ (item, index) => index.toString() }
                         />
                     </View>
 

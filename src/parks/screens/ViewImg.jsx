@@ -27,7 +27,7 @@ export const ViewImg = () => {
             <FlatList
                 data={getImgJoinTable}
                 renderItem={ ({item}) => (<CardImg uri = {`${urlImg}${item.ruta}`} /> ) }
-                keyExtractor={ (item) => item.id }
+                keyExtractor={ (item, index) => index.toString() }
             />
         </SafeAreaView>
     );

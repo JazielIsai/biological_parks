@@ -47,12 +47,11 @@ export const ViewParks = () => {
                                                     <Text>Areas de recreocion: {item.recreationAreas}</Text>
                                                 </> 
                                             }
-                                            onPressLink = { () => (<Maps latitude={item.latitude} longitude={item.length} />) }
-                                            link={'Ir a Google Maps'}
+                                            link={<Maps latitude={item.latitude} longitude={item.length} />}
                                         />
                                     ) 
                                 }
-                                keyExtractor={ (item) => item.id }
+                                keyExtractor={ (item, index) => index.toString() }
                             />
                         )
                     }

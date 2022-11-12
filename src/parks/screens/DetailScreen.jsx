@@ -26,9 +26,9 @@ export const DetailScreen = ({navigation}) => {
     useEffect( () => {
 
         try {
+            console.log("getRelationBewttenBiologicDataAndParks ",JSON.parse(getRelationBewttenBiologicDataAndParks)[0]);
             setBiologicImage(JSON.parse(getBiologicImage));
             setParkImage(JSON.parse(getParkImage));
-            console.log("getRelationBewttenBiologicDataAndParks ",JSON.parse(getRelationBewttenBiologicDataAndParks)[0]);
 
             setBiologicAndParksData(JSON.parse(getRelationBewttenBiologicDataAndParks)[0]);
 
@@ -38,7 +38,7 @@ export const DetailScreen = ({navigation}) => {
         }
 
 
-    },[getBiologicImage, getParkImage] )
+    },[getBiologicImage, getParkImage, idBiologic, idParksData] )
 
     return (
         <ScrollView>
@@ -77,8 +77,19 @@ export const DetailScreen = ({navigation}) => {
                                 <Text style={styles.title}> {getBiologicAndParksData.namePark} </Text>
                                 <Text style={styles.text}> {getBiologicAndParksData?.recreationAreas} </Text>
                                 
-                                <View style={{flex: 1, display: 'flex', width: '90%' }}>
-                                    <Maps latitude={getBiologicAndParksData.latitude}  longitude= {getBiologicAndParksData.length} />
+                                <View style={{flex: 1, display: 'flex', width: '90%', padding: 10, }}>
+                                    <Maps 
+                                        latitude={getBiologicAndParksData.latitude}  
+                                        longitude= {getBiologicAndParksData.length} 
+                                        customStyle={{
+                                            padding: 10,
+                                            alignItems: "center",
+                                            justifyContent: "center", 
+                                            borderRadius: 15,
+                                            width: "100%", 
+                                            marginBottom: 10, 
+                                        }}
+                                    />
                                 </View>
 
                                 <Text style={styles.text}> {getBiologicAndParksData.street} </Text>

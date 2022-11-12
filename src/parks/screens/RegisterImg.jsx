@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, {useEffect, useState, useCallback, useContext} from "react";
 import {SafeAreaView,
         StyleSheet,
         ScrollView,
@@ -11,6 +11,7 @@ import {SafeAreaView,
         TouchableOpacity} from "react-native";
 import {Picker} from '@react-native-picker/picker';
 import { TextInput } from "react-native-gesture-handler";
+import { AuthContext } from "../../auth/context/AuthContext";
 import {useFetchGet} from "../../hooks/useFetchGet";
 import { useForm } from "../../hooks/useForm";
 
@@ -23,20 +24,25 @@ import { ImagePickerAvatar } from "../components/image-picker-avatar";
 
 export const RegisterImg = () => {
 
+    const {user} = useContext(AuthContext);
+
     const [ getParks, setParks ] = useState([]);
+    const [getBiologicData, setBiologicData] = useState([]);
 
     const { form, onChange, onReset} = useForm({});
 
     const { data : getAllParks } = useFetchGet('get_all_name_and_id_parks');
+    const { data : getAllBiologicData } = useFetchGet(`get_all_name_and_id_biologic_data&user_id=${user.id}`);
 
     const [pickerResponse, setPickerResponse] = useState(null);
-    const [visible, setVisible] = useState(false);
+    const [optionSave, setOptionSave] = useState(null);
     
+    const imgWait = 'https://us.123rf.com/450wm/musmellow/musmellow2011/musmellow201100058/159878472-icono-de-imagen.jpg?ver=6';
 
     useEffect( () => {
         try {
-            console.log(getAllParks);
             setParks(JSON.parse(getAllParks));
+            setBiologicData(JSON.parse(getAllBiologicData));
         } catch (error) {
             console.log("The error is by: ", error);
         }
@@ -78,7 +84,7 @@ export const RegisterImg = () => {
     }, []);
     
 
-    const uri = pickerResponse?.assets && pickerResponse.assets[0].uri;
+    // const uri = pickerResponse?.assets && pickerResponse.assets[0].uri;
     
 
     return (
@@ -110,12 +116,11 @@ export const RegisterImg = () => {
                 value={form?.author}
             />
 
-
             <View style={styles.screen}>
                 
                 <Image
                     style={styles.stretch}
-                    source={ { uri : pickerResponse?.assets ? pickerResponse.assets[0].uri : '' } }
+                    source={ { uri : pickerResponse?.assets ? pickerResponse.assets[0].uri : imgWait } }
                 />
 
                 <View style={styles.buttons}>
@@ -139,22 +144,62 @@ export const RegisterImg = () => {
         
             </View>
 
+            <View style={{ display: 'flex', width: '80%', margin: 10 }} >
 
-            <Picker
-                selectedValue={form.idParks}
-                onValueChange={ (itemValue, itemIndex) => {
-                    onChange(itemValue, 'idParks');
-                } }
-            >
+                <Picker
+                    selectedValue={optionSave}
+                    onValueChange={(itemValue, itemIndex) => {
+                        setOptionSave(itemValue);
+                    }}
+                >
+                    <Picker.Item label="Asignar imagen a: " />
+                    <Picker.Item label="Parque" value={'Parque'} />
+                    <Picker.Item label="Ficha Biologica" value={'FBiologica'} />
+                </Picker>
+
                 {
-                    getParks !== undefined &&
-                    getParks !== null &&
-                        getParks.map( (item, index) => (
-                            <Picker.Item key={index} label={item.namePark} value={item.id} />
-                        ))
+                    optionSave === 'Parque' ? (
+                        <Picker
+                            selectedValue={form.idParks}
+                            onValueChange={ (itemValue, itemIndex) => {
+                                onChange(itemValue, 'idParks');
+                            } }
+                        >
+                            {
+                                getParks !== undefined &&
+                                getParks !== null &&
+                                    getParks.map( (item, index) => (
+                                        <Picker.Item key={index} label={item.namePark} value={item.id} />
+                                    ))
+                            }
+                        </Picker>
+                    ) : optionSave === 'FBiologica' && (
+                            <Picker
+                                selectedValue={form.idBiologicData}
+                                onValueChange={ (itemValue, itemIndex) => {
+                                    onChange(itemValue, 'idBiologicData');
+                                } }
+                            >
+                                {
+                                    getBiologicData !== undefined &&
+                                    getBiologicData !== null &&
+                                        getBiologicData.map( (item, index) => (
+                                            <Picker.Item key={index} label={item.commonName} value={item.id} />
+                                        ))
+                                }
+                            </Picker>
+                    )
                 }
-            </Picker>
+            </View>
             
+            <TouchableOpacity
+                style={styles.buttonSave}
+            >
+                <View style={styles.btnView}>
+                    <Text style={styles.textButton}> Guardar </Text>
+                </View>
+            </TouchableOpacity>
+
         </View>
     )
 }
@@ -162,18 +207,66 @@ export const RegisterImg = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
         backgroundColor: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        margin: 'auto',
+        padding: 10,
+        alignItems: 'center',
     },
     textInput: {
         height: 50,
-        width: 200,
+        width: 250,
         marginVertical: 10,
+    },
+    screen:  {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     stretch: {
         width: 200,
         height: 200,
+        margin: 10,
+        backgroundColor: '#eee',
         resizeMode: 'stretch',
+    },
+    buttons: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '100%',
+    },
+    button: {
+        backgroundColor: 'gray',
+        width: 100,
+        height: 40,
+        borderRadius: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    buttonSave: {
+        shadowColor: '#1e44f1de',
+        shadowOffset: { width: 1, height: 2 },
+        shadowOpacity: 0.9,
+        shadowRadius: 2,
+        elevation: 8,
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        width: 200,
+        paddingHorizontal: 20,
+        paddingVertical: 5,
+    },
+    btnView: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    textButton: {
+        color: 'rgb(0,0,0)',
+        fontSize: 20,
+        textAlign: 'center',
     },
     
 });

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useId } from "react";
 import {Text, View, SafeAreaView, Image, StyleSheet, StatusBar} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import {useFetchGet} from '../../hooks/useFetchGet';
@@ -9,6 +9,8 @@ import { Background } from "../components/Background";
   
 
 export const HomeScreen = () => {
+
+    const id = useId()
 
     const {data} = useFetchGet('get_all_relation_biologic_data_and_parks_data_with_img_way_desc');
 
@@ -57,10 +59,8 @@ export const HomeScreen = () => {
                             data={cardItems}
                             renderItem={itemsRender}
                             horizontal={true}
-                            keyExtractor={ (item) => item.id }
-
+                            keyExtractor={ (item, index) => index.toString() }
                         />
-
                     </View>
                 )
             }
@@ -72,8 +72,7 @@ export const HomeScreen = () => {
                         style={{ marginTop: 20, display: 'flex' }}
                         data={cardItems}
                         renderItem={({ item }) => <CardPoster data={item} commonName={item.commonName} namePark={item.NamePark} />}
-                        keyExtractor={ (item) => item.id }
-
+                        keyExtractor={ (item, index) => index.toString() }
                     />
                 )
             }

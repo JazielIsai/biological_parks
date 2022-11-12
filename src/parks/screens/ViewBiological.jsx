@@ -58,7 +58,7 @@ export const ViewBiological = () => {
                                         />
                                     ) 
                                 }
-                                keyExtractor={ (item) => item.id }
+                                keyExtractor={ (item, index) => index.toString() }
                             />
                         )
                     }
