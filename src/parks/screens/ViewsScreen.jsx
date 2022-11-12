@@ -1,13 +1,31 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TextInput, StyleSheet, VirtualizedList, ScrollView} from "react-native";
 import CheckBox from '@react-native-community/checkbox';
+import {Picker} from '@react-native-picker/picker';
 
 import { Search } from '../../components/Search';
+import { useFetchGet } from '../../hooks/useFetchGet';
+import { useForm } from '../../hooks/useForm';
 
 export const ViewsScreen = () => {
 
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
     const [getSearch, setSearch] = useState('');
+
+    const {onChange, onReset, form} = useForm({});
+
+    const {data : getAllCategory} = useFetchGet('get_all_category');
+
+    const [getCategorie, setGetCategorie] = useState([]);
+
+    useEffect ( ( ) => {
+        try {
+            setGetCategorie(JSON.parse(getAllCategory));
+        } catch (err) {
+            console.log(err);
+        }
+
+    }, [getAllCategory] )
 
     return (
         <View
@@ -38,23 +56,6 @@ export const ViewsScreen = () => {
                         Filtrar:
                     </Text>
 
-                    <View style={styles.filterOption}>
-                        <Text> Parque </Text>
-                        <CheckBox
-                            disabled={false}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                        />
-                    </View>
-
-                    <View style={styles.filterOption}>
-                        <Text> Fauna </Text>
-                        <CheckBox
-                            disabled={false}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                        />
-                    </View>
                     
                     <View style={styles.filterOption}>
                         <Text> Aves </Text>
@@ -65,8 +66,21 @@ export const ViewsScreen = () => {
                         />
                     </View>
 
-
                 </View>
+
+                <Picker
+                    selectedValue={form.idCategory}
+                    onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'idCategory')}
+                >
+                    <Picker.Item label={'Todas las categorias'} value='default' />
+                    {
+                        getCategorie !== undefined && 
+                        getCategorie !== null && 
+                            getCategorie.map( (item, index) => (
+                                <Picker.Item key={index} label={item.description} value={item.id} />
+                            ))
+                    }
+                </Picker>
 
             </View>
 

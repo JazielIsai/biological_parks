@@ -18,8 +18,6 @@ import { useForm } from "../../hooks/useForm";
 // import ImagePicker from 'react-native-image-picker';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
-import { ImagePickerModal } from "../components/ImagePickerModal";
-import { ImagePickerAvatar } from "../components/image-picker-avatar";
 
 
 export const RegisterImg = () => {
