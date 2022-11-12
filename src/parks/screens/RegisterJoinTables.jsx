@@ -25,11 +25,9 @@ export const RegisterJoinTables = () => {
 
     const { form, onChange, onReset} = useForm({});
 
-    const { data : getAllParks } = useFetchGet('get_all_name_and_id_parks');
+    const { data : getAllParks } = useFetchGet(`get_all_name_and_id_parks&user_id=${user.id}`);
     const { data : getAllBiologicData } = useFetchGet(`get_all_name_and_id_biologic_data&user_id=${user.id}`);
-
-    const [optionSave, setOptionSave] = useState(null);
-    
+   
 
     useEffect( () => {
         try {
@@ -38,7 +36,7 @@ export const RegisterJoinTables = () => {
         } catch (error) {
             console.log("The error is by: ", error);
         }
-    }, [getAllParks] )
+    }, [getAllParks, getAllBiologicData] )
 
     const sendPost = () => {
 
