@@ -2,16 +2,11 @@ import React from 'react-native';
 import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-export const CardImg = ({data, commonName, namePark, height = 380, width = 340}) => {
-
-    const  uri = 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80';
+export const CardImg = ({data, uri, height = 380, width = 340}) => {
 
     const navigation = useNavigation();
 
-    console.log("This is the specie: ",commonName, namePark );
-
     const onPress = () => {
-        
         navigation.navigate('DetailScreen', {idBiologic: data?.idBiologic, idParksData: data?.idParksData});
     }
 
@@ -46,15 +41,11 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         flex: 1,
-        borderRadius: 18,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 10,
-        },
-        shadowOpacity: 0.24,
-        shadowRadius: 7,
-        elevation: 9,
+        backgroundColor:'floralwhite',
+        borderRadius: 100,
+        marginLeft: 8,
+        marginRight: 8,
+        marginBottom: 5, 
     },
     text: {
 
