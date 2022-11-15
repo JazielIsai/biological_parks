@@ -16,6 +16,8 @@ export const HomeScreen = () => {
 
     const [cardItems, setCardItems] = useState([]);
 
+    const imgWait = 'https://us.123rf.com/450wm/musmellow/musmellow2011/musmellow201100058/159878472-icono-de-imagen.jpg?ver=6';
+
 
     useEffect( ()=> {
 

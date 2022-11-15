@@ -14,7 +14,7 @@ import { TextInput } from "react-native-gesture-handler";
 import { AuthContext } from "../../auth/context/AuthContext";
 import {useFetchGet} from "../../hooks/useFetchGet";
 import { useForm } from "../../hooks/useForm";
-
+import {requestPost} from '../../helpers/requestPost';
 
 export const RegisterJoinTables = () => {
 
@@ -43,13 +43,19 @@ export const RegisterJoinTables = () => {
         console.log(form);
 
         const body = {
-            name: form.name,
-            author: form.author,
-            idPark: form.idPark,
-            img: form.img
+            idBiologic: form.idBiologicData,
+            idParksData: form.idParks,
         }
 
         console.log(body);
+
+        const formData = new FormData();
+        formData.append('data', JSON.stringify(body));
+
+        requestPost('add_relation_to_pivot_table', formData)
+            .then( resp => {
+                console.log(resp);
+            })
 
     }
 

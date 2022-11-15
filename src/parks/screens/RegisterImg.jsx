@@ -8,7 +8,8 @@ import {SafeAreaView,
         Image,
         Button,
         Dimensions,
-        TouchableOpacity} from "react-native";
+        TouchableOpacity,
+        Alert} from "react-native";
 import {Picker} from '@react-native-picker/picker';
 import { TextInput } from "react-native-gesture-handler";
 import { AuthContext } from "../../auth/context/AuthContext";
@@ -17,6 +18,7 @@ import { useForm } from "../../hooks/useForm";
 
 // import ImagePicker from 'react-native-image-picker';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import { requestPost } from "../../helpers/requestPost";
 
 
 
@@ -37,6 +39,8 @@ export const RegisterImg = () => {
     
     const imgWait = 'https://us.123rf.com/450wm/musmellow/musmellow2011/musmellow201100058/159878472-icono-de-imagen.jpg?ver=6';
 
+    console.log("The pickerResponse is: ",pickerResponse);
+
     useEffect( () => {
         try {
             setParks(JSON.parse(getAllParks));
@@ -45,21 +49,6 @@ export const RegisterImg = () => {
             console.log("The error is by: ", error);
         }
     }, [getAllParks, getAllBiologicData] )
-
-    const sendPost = () => {
-
-        console.log(form);
-
-        const body = {
-            name: form.name,
-            author: form.author,
-            idPark: form.idPark,
-            img: form.img
-        }
-
-        console.log(body);
-
-    }
 
     const onImageLibraryPress = useCallback( async () => {
         const options = {
@@ -83,7 +72,53 @@ export const RegisterImg = () => {
     
 
     // const uri = pickerResponse?.assets && pickerResponse.assets[0].uri;
-    
+
+    const sendPost = () => {
+
+        if (   form.name === undefined || form.name === null || form.name === '' 
+            && form.author === undefined || form.author === null || form.author === ''
+            && pickerResponse === null || pickerResponse === undefined || pickerResponse === ''
+            && optionSave === null || optionSave === undefined || optionSave === ''
+           ) 
+        {
+            return Alert.alert('Todos los campos son requeridos');
+        }
+        
+
+        console.log(form);
+
+        const localUri = pickerResponse?.assets && pickerResponse.assets[0].uri;
+
+        let filename = localUri.split('/').pop();
+        console.log("fileName", filename);
+
+        let match = /\.(\w+)$/.exec(filename);
+        console.log("match", match);
+
+        let type = match ? `image/${match[1]}` : `image`;
+        console.log("type", type);
+
+        const body = {
+            name: form.name,
+            author: form.author,
+            idPark: form.idParks,
+        }
+
+        console.log(body);
+
+        const formData = new FormData();
+        formData.append('data', JSON.stringify(body));
+        formData.append('photo', { uri: localUri, name: filename, type });
+
+        requestPost('upload_image_by_park_data', formData)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    }
 
     return (
         <View style={styles.container}>
@@ -192,6 +227,7 @@ export const RegisterImg = () => {
             
             <TouchableOpacity
                 style={styles.buttonSave}
+                onPress={sendPost}
             >
                 <View style={styles.btnView}>
                     <Text style={styles.textButton}> Guardar </Text>

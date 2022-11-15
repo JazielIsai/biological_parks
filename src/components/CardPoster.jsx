@@ -1,10 +1,12 @@
 import React from 'react-native';
 import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
+import { urlImg } from '../Shared/baseUrl';
 
 export const CardPoster = ({data, commonName, namePark, height = 420, width = 400}) => {
 
     const  uri = 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80';
+    const imgWait = 'https://us.123rf.com/450wm/musmellow/musmellow2011/musmellow201100058/159878472-icono-de-imagen.jpg?ver=6';
 
     const navigation = useNavigation();
 
@@ -27,7 +29,7 @@ export const CardPoster = ({data, commonName, namePark, height = 420, width = 40
             >
                 <View style={ styles.imageContainer }>
                     <Image
-                        source={{ uri }}
+                        source={{ uri: data.path_img_biologic_data ? urlImg.concat(data.path_img_biologic_data) : data.path_img_parks ? urlImg.concat(data.path_img_parks) : imgWait }}
                         style={ styles.image }
                     />
                 </View>
