@@ -70,7 +70,6 @@ export const RegisterImg = () => {
         await launchCamera(options, setPickerResponse);
     }, []);
     
-
     // const uri = pickerResponse?.assets && pickerResponse.assets[0].uri;
 
     const sendPost = () => {
@@ -79,7 +78,7 @@ export const RegisterImg = () => {
             && form.author === undefined || form.author === null || form.author === ''
             && pickerResponse === null || pickerResponse === undefined || pickerResponse === ''
             && optionSave === null || optionSave === undefined || optionSave === ''
-           ) 
+           )
         {
             return Alert.alert('Todos los campos son requeridos');
         }
@@ -101,22 +100,40 @@ export const RegisterImg = () => {
         const body = {
             name: form.name,
             author: form.author,
-            idPark: form.idParks,
+            id: form.idParks !== undefined ? form.idParks : form.idBiologicData !== undefined ? form.idBiologicData : null,
+            idUser: user.id
         }
-
-        console.log(body);
 
         const formData = new FormData();
         formData.append('data', JSON.stringify(body));
         formData.append('photo', { uri: localUri, name: filename, type });
+        
+        if (optionSave === 'Parque') {
+            requestPost('upload_image_by_park_data', formData)
+                .then(res => {
+                    onReset({});
+                    setOptionSave('');
+                    setPickerResponse(null);
+                    Alert.alert('Imagen guardada con éxito');
+                    console.log("Service = upload_image_by_park_data -> ", res)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        } else if ( optionSave === 'FBiologica') {
+            requestPost('upload_image_by_biologic_data', formData)
+                .then(res => {
+                    onReset({});
+                    setOptionSave('');
+                    setPickerResponse(null);
+                    Alert.alert('Imagen guardada con éxito');
+                    console.log("Service = upload_image_by_biologic_data -> ", res)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
 
-        requestPost('upload_image_by_park_data', formData)
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
 
     }
 
