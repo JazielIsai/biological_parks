@@ -64,7 +64,7 @@ export const DetailScreen = ({navigation}) => {
 
                     {
                         getBiologicAndParksData !== null &&
-                        getBiologicAndParksData !== undefined && (
+                        getBiologicAndParksData !== undefined ? (
                             <View style={{flex: 1, display: 'flex', margin: 10, width: '90%' }}>
                                 <View style={{ display: 'flex', flexDirection: 'column', width: '90%' }} >
                                     <Text style={styles.title}> {getBiologicAndParksData.commonName} </Text>
@@ -95,6 +95,9 @@ export const DetailScreen = ({navigation}) => {
                                 <Text style={styles.text}> {getBiologicAndParksData.street} </Text>
                                 <Text style={styles.text}> {getBiologicAndParksData.suburb} </Text>
                             </View>
+                        ) :
+                        (
+                            <Text> No hay datos relacionados </Text>
                         )
                     }
                     
