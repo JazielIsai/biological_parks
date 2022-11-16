@@ -2,12 +2,12 @@ import React from "react";
 import {View, Text, TextInput, TouchableOpacity, StyleSheet, VirtualizedList} from "react-native";
 
 
-export const CardText = ({title, subtitle, description, onPressLink, link}) => {
+export const CardText = ({title, subtitle, description, onPressLink, link, backgroundColor = '#fffcee'}) => {
 
 
 
     return (
-        <View style={styles.container}>
+        <View style={{...styles.container, backgroundColor: backgroundColor}}>
 
             <Text style={styles.titleMain}>
                 { title }
@@ -39,7 +39,6 @@ export const CardText = ({title, subtitle, description, onPressLink, link}) => {
 const styles = StyleSheet.create({
     
     container: {
-        backgroundColor: '#fffcee',
         margin: 10,
         padding: 10,
         width: 350,
