@@ -2,10 +2,42 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image} from 'react-native';
 import {Background} from "../components/Background";
 import {useNavigation} from "@react-navigation/native";
+import { requestPost } from '../../helpers/requestPost';
+import { useForm } from '../../hooks/useForm';
 
 export const RegisterScreen = () => {
 
     const navigation = useNavigation();
+
+    const { form, onChange, onReset } = useForm({});
+
+    const onRegister = () => {
+        Alert.alert('Register');
+
+        const body = {
+            firstname: form.firstname,
+            lastname: form.lastname,
+            academicTitle: form.academicTitle,
+            email: form.email,
+            password: form.password,
+            id_rol: 2
+        }
+
+        const formData = new FormData();
+        formData.append('data', JSON.stringify(body));
+
+        requestPost('add_new_user', formData)
+            .then( resp => {
+                console.log(resp);
+                if (resp.includes('0')) {
+                    Alert.alert('Usuario creado con éxito');
+                    onReset({});
+                    navigation.navigate('Login')
+                } else {
+                    Alert.alert('Error al crear el usuario, verfique los datos');
+                }
+            })
+    }
 
     return (
         <>
@@ -24,8 +56,9 @@ export const RegisterScreen = () => {
                         style={styles.textInput}
                         placeholderTextColor={'rgba(255,255,255,0.4)'}
                         underlineColorAndroid={'white'}
-                        secureTextEntry
                         selectionColor={'white'}
+                        onChangeText={ (value) => onChange(value, 'firstname') }
+                        value={form.firstname}
 
                     />
 
@@ -34,8 +67,9 @@ export const RegisterScreen = () => {
                         placeholderTextColor={'rgba(255,255,255,0.4)'}
                         style={styles.textInput}
                         underlineColorAndroid={'white'}
-                        secureTextEntry
                         selectionColor={'white'}
+                        onChangeText={ (value) => onChange(value, 'lastname') }
+                        value={form.lastname}
 
                     />
 
@@ -44,8 +78,9 @@ export const RegisterScreen = () => {
                         style={styles.textInput}
                         placeholderTextColor={'rgba(255,255,255,0.4)'}
                         underlineColorAndroid={'white'}
-                        secureTextEntry
                         selectionColor={'white'}
+                        onChangeText={ (value) => onChange(value, 'academicTitle') }
+                        value={form.academicTitle}
 
                     />
 
@@ -59,6 +94,8 @@ export const RegisterScreen = () => {
                         autoCorrect={false}
                         underlineColorAndroid={'white'}
                         selectionColor={'white'}
+                        onChangeText={ (value) => onChange(value, 'email') }
+                        value={form.email}
 
                     />
 
@@ -69,6 +106,8 @@ export const RegisterScreen = () => {
                         style={styles.textInput}
                         underlineColorAndroid={'white'}
                         selectionColor={'white'}
+                        onChangeText={ (value) => onChange(value, 'password') }
+                        value={form.password}
 
                     />
 
@@ -76,7 +115,10 @@ export const RegisterScreen = () => {
                     />
 
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.btnLogin} >
+                        <TouchableOpacity 
+                            style={styles.btnLogin}
+                            onPress={onRegister}
+                        >
                             <View style={styles.btnView}>
                                 <Text style={styles.textButton}> Registrarse </Text>
                             </View>

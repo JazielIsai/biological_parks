@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TextInput, StyleSheet, VirtualizedList, ScrollView} from "react-native";
-import CheckBox from '@react-native-community/checkbox';
+import {View, Text, TextInput, StyleSheet, FlatList, ScrollView} from "react-native";
+// import CheckBox from '@react-native-community/checkbox';
 import {Picker} from '@react-native-picker/picker';
 
 import { Search } from '../../components/Search';
@@ -57,30 +57,31 @@ export const ViewsScreen = () => {
                     </Text>
 
                     
-                    <View style={styles.filterOption}>
+                    {/* <View style={styles.filterOption}>
                         <Text> Aves </Text>
                         <CheckBox
                             disabled={false}
                             value={toggleCheckBox}
                             onValueChange={(newValue) => setToggleCheckBox(newValue)}
                         />
-                    </View>
+                    </View> */}
 
+                    <Picker
+                        selectedValue={form.idCategory}
+                        onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'idCategory')}
+                        style={{height: 50, width: 250}}
+                    >
+                        <Picker.Item label={'Todas las categorias'} value='default' />
+                        {
+                            getCategorie !== undefined && 
+                            getCategorie !== null && 
+                                getCategorie.map( (item, index) => (
+                                    <Picker.Item key={index} label={item.description} value={item.id} />
+                                ))
+                        }
+                    </Picker>
                 </View>
 
-                <Picker
-                    selectedValue={form.idCategory}
-                    onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'idCategory')}
-                >
-                    <Picker.Item label={'Todas las categorias'} value='default' />
-                    {
-                        getCategorie !== undefined && 
-                        getCategorie !== null && 
-                            getCategorie.map( (item, index) => (
-                                <Picker.Item key={index} label={item.description} value={item.id} />
-                            ))
-                    }
-                </Picker>
 
             </View>
 
@@ -88,6 +89,7 @@ export const ViewsScreen = () => {
                 {
                     getSearch !== '' &&
                         <Search getSearch={getSearch} />
+                    
                 }
             </ScrollView>
             
@@ -114,7 +116,7 @@ const styles = StyleSheet.create({
     },
     searchText:{
         marginRight: 6,
-        marginLeft: 6,
+        marginLeft: 8,
         fontSize: 14,
     },
     searchTextInput: {
@@ -124,10 +126,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     optionFilter: {
+        display: 'flex',
         flexDirection: 'row',
         margin: 'auto',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
         marginBottom: 5,
+        
     },
     filterOption: {
         flexDirection: 'row',
