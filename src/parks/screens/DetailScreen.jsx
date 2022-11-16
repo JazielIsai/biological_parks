@@ -4,6 +4,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { CardImg } from '../../components/CardImg';
 import { Maps } from '../../components/Maps';
 import { useFetchGet } from '../../hooks/useFetchGet';
+import { urlImg } from '../../Shared/baseUrl';
 
 
 export const DetailScreen = ({navigation}) => {
@@ -38,7 +39,7 @@ export const DetailScreen = ({navigation}) => {
         }
 
 
-    },[getBiologicImage, getParkImage, idBiologic, idParksData] )
+    },[getBiologicImage, getParkImage, getRelationBewttenBiologicDataAndParks, idBiologic, idParksData] )
 
     return (
         <ScrollView>
@@ -52,9 +53,9 @@ export const DetailScreen = ({navigation}) => {
                     biologicImage !== undefined && (
                         <FlatList
                             data={images}
-                            renderItem={ ({item}) => (<CardImg data={item} />) }
+                            renderItem={ ({item}) => (<CardImg data={item}  uri={urlImg.concat(item.ruta)} />) }
                             horizontal={true}
-                            keyExtractor={ (item) => item.id }
+                            keyExtractor={ (item, index) => index.toString() }
                         />
                     )
                 }
