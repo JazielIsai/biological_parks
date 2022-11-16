@@ -8,6 +8,7 @@ import {SafeAreaView,
         Image,
         Button,
         Dimensions,
+        Alert,
         TouchableOpacity} from "react-native";
 import {Picker} from '@react-native-picker/picker';
 import { TextInput } from "react-native-gesture-handler";
@@ -54,6 +55,13 @@ export const RegisterJoinTables = () => {
 
         requestPost('add_relation_to_pivot_table', formData)
             .then( resp => {
+                if (resp.includes('1')) {
+                    Alert.alert('Relación creada con éxito');
+                    onReset({});
+                } else {
+                    Alert.alert('Error al crear la relación');
+                    onReset({});
+                }
                 console.log(resp);
             })
 
@@ -69,16 +77,6 @@ export const RegisterJoinTables = () => {
                 Relacionar los datos biológicos con el parque:
             </Text>
 
-            <TextInput
-                placeholder={'Nombre de la especie'}
-                style={styles.textInput}
-                placeholderTextColor={'rgba(128,128,128,0.8)'}
-                underlineColorAndroid={'gray'}
-                selectionColor={'gray'}
-                onChangeText={ text => onChange(text, 'name') }
-                value={form?.name}
-            />
-
 
             <View style={{ display: 'flex', width: '80%', margin: 10 }} >
 
@@ -88,6 +86,7 @@ export const RegisterJoinTables = () => {
                         onChange(itemValue, 'idParks');
                     } }
                 >
+                    <Picker.Item label="Seleccione el parque" value={0} />
                     {
                         getParks !== undefined &&
                         getParks !== null &&
@@ -103,6 +102,7 @@ export const RegisterJoinTables = () => {
                         onChange(itemValue, 'idBiologicData');
                     } }
                 >
+                    <Picker.Item label="Seleccione los datos biológicos" value={0} />
                     {
                         getBiologicData !== undefined &&
                         getBiologicData !== null &&
@@ -116,6 +116,7 @@ export const RegisterJoinTables = () => {
             
             <TouchableOpacity
                 style={styles.buttonSave}
+                onPress={sendPost}
             >
                 <View style={styles.btnView}>
                     <Text style={styles.textButton}> Guardar </Text>
