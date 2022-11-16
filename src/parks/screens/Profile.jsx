@@ -1,20 +1,14 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {View, SafeAreaView, Text, ScrollView, TextInput, StyleSheet, TouchableOpacity, Image, FlatList} from "react-native";
+import {View, SafeAreaView, LogBox, Text, ScrollView, StyleSheet, FlatList} from "react-native";
 import {AuthContext} from "../../auth/context/AuthContext";
 import {useNavigation} from '@react-navigation/native';
 import {useFetchGet} from '../../hooks/useFetchGet';
 import { BtnLink } from '../components/BtnLink';
 import { CardText } from '../../components/CardText';
-import { CardPoster } from '../../components/CardPoster';
 import { EncabezadoProfile } from '../../components/EncabezadoProfile';
 import { CardImg } from '../../components/CardImg';
 import { urlImg } from '../../Shared/baseUrl';
 
-const Stack = createNativeStackNavigator();
-
-
-const DATA = [];
 
 
 export const Profile = () => {
@@ -77,6 +71,7 @@ export const Profile = () => {
         try {
             console.log(joinTable);
             setJoinTable(JSON.parse(getJoinTable));
+            LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
 
         } catch (err) {
             console.log("This is error: ",err);
