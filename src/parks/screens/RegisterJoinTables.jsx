@@ -1,17 +1,10 @@
 import React, {useEffect, useState, useCallback, useContext} from "react";
-import {SafeAreaView,
-        StyleSheet,
-        ScrollView,
+import {StyleSheet,
         View,
         Text,
-        StatusBar,
-        Image,
-        Button,
-        Dimensions,
         Alert,
         TouchableOpacity} from "react-native";
 import {Picker} from '@react-native-picker/picker';
-import { TextInput } from "react-native-gesture-handler";
 import { AuthContext } from "../../auth/context/AuthContext";
 import {useFetchGet} from "../../hooks/useFetchGet";
 import { useForm } from "../../hooks/useForm";
@@ -72,7 +65,7 @@ export const RegisterJoinTables = () => {
         <View style={styles.container}>
             
             <Text
-                style={{color: 'black', fontWeight: 'bold', fontSize: 18, marginTop: 15}}
+                style={{color: 'black', fontWeight: 'bold', fontSize: 18, marginTop: 15, marginBottom: 15}}
             >
                 Relacionar los datos biológicos con el parque:
             </Text>
@@ -85,6 +78,7 @@ export const RegisterJoinTables = () => {
                     onValueChange={ (itemValue, itemIndex) => {
                         onChange(itemValue, 'idParks');
                     } }
+                    style={{ marginBottom: 15, }}
                 >
                     <Picker.Item label="Seleccione el parque" value={0} />
                     {
@@ -101,6 +95,7 @@ export const RegisterJoinTables = () => {
                     onValueChange={ (itemValue, itemIndex) => {
                         onChange(itemValue, 'idBiologicData');
                     } }
+                    style={{ marginBottom: 15, }}
                 >
                     <Picker.Item label="Seleccione los datos biológicos" value={0} />
                     {

@@ -1,13 +1,8 @@
 import React, {useEffect, useState, useCallback, useContext} from "react";
-import {SafeAreaView,
-        StyleSheet,
-        ScrollView,
+import {StyleSheet,
         View,
         Text,
-        StatusBar,
         Image,
-        Button,
-        Dimensions,
         TouchableOpacity,
         Alert} from "react-native";
 import {Picker} from '@react-native-picker/picker';
