@@ -215,6 +215,7 @@ export const RegisterImg = () => {
                                 onChange(itemValue, 'idParks');
                             } }
                         >
+                            <Picker.Item label="Seleccionar Parque" value={0} />
                             {
                                 getParks !== undefined &&
                                 getParks !== null &&
@@ -230,6 +231,7 @@ export const RegisterImg = () => {
                                     onChange(itemValue, 'idBiologicData');
                                 } }
                             >
+                                <Picker.Item label="Seleccione los ficha biológica" value={0} />
                                 {
                                     getBiologicData !== undefined &&
                                     getBiologicData !== null &&
