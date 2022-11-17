@@ -5,6 +5,7 @@ import {useFetchGet} from '../../hooks/useFetchGet';
 
 import { CardPoster } from "../../components/CardPoster";
 import { Background } from "../components/Background";
+import { urlImg } from "../../Shared/baseUrl";
 
   
 
@@ -44,7 +45,7 @@ export const HomeScreen = () => {
             >
               <Image
                 style={{height: 70, width: 70, borderRadius: 100}}
-                source={{uri: 'https://i1.wp.com/montesdeoro.go.cr/wp-content/uploads/2021/11/Pajaro-Bobo-.-1.jpg?ssl=1'}}
+                source={{uri: item.path_img_biologic_data ? urlImg.concat(item.path_img_biologic_data) : item.path_img_parks ? urlImg.concat(item.path_img_parks) : imgWait}}
               />
             </View>
         )
