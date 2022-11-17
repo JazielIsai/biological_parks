@@ -3,15 +3,16 @@ import {View, Text, TextInput, StyleSheet, FlatList, SafeAreaView, TouchableOpac
 import { AuthContext } from "../../auth/context/AuthContext";
 import { useFetchGet } from "../../hooks/useFetchGet";
 import { CardText } from "../../components/CardText";
-import {CardImg} from "../../components/CardImg";
+// import {CardImg} from "../../components/CardImg";
 import { Maps } from "../../components/Maps";
-import { BtnLink } from "../components/BtnLink";
-import { Button } from "react-native-paper";
 import { requestPost } from "../../helpers/requestPost";
+import { useNavigation } from "@react-navigation/native";
 
 export const ViewParks = () => {
 
     const {user} = useContext(AuthContext);
+
+    const navigation = useNavigation();
 
     const { data : getParksByUser } = useFetchGet(`get_parks_by_user_id&user_id=${user.id}`);
 
@@ -33,18 +34,37 @@ export const ViewParks = () => {
             Alert.alert('Error al eliminar el parque');
             return;
         }
-        
+
         const formData = new FormData();
         formData.append('id', id);
 
-        requestPost('delete_park', formData)
-            .then( resp => {
-                console.log(resp);
-                if (resp.includes('1')) {
-                    Alert.alert('Parque eliminado con éxito');
-                    setDataParks(getDataParks.filter( park => park.id !== id ));
+
+        Alert.alert(
+            "Eliminar parque",
+            "¿Está seguro de eliminar el parque?",
+            [
+                {
+                    text: "Cancelar",
+                    onPress: () => console.log("Cancelar Pressed"),
+                    style: "cancel"
+                },
+                { 
+                    text: "OK", 
+                    onPress: () => {
+                        requestPost('delete_park', formData)
+                        .then( resp => {
+                            console.log(resp);
+                            if (resp.includes('1')) {
+                                Alert.alert('Parque eliminado con éxito');
+                                setDataParks(getDataParks.filter( park => park.id !== id ));
+                            }
+                        })
+                    }
                 }
-            })
+            ]
+        );
+
+        
     }
 
     const updatePark = (id) => {
@@ -54,6 +74,8 @@ export const ViewParks = () => {
             Alert.alert('Error al actualizar el parque');
             return;
         }
+
+        navigation.navigate('EditPark', { idPark: id });
 
     }
 
@@ -89,7 +111,7 @@ export const ViewParks = () => {
                                                 
                                                 <TouchableOpacity
                                                     style={{backgroundColor: '#FFF200', padding: 8, borderRadius: 10,}}
-                                                    onPress={ () => console.log("Editando") }
+                                                    onPress={ () => updatePark(item.id) }
                                                 >
                                                     <View>
                                                         <Text>Editar</Text>

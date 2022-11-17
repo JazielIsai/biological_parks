@@ -11,6 +11,8 @@ import { ViewParks } from '../parks/screens/ViewParks';
 import { ViewBiological } from '../parks/screens/ViewBiological';
 import { ViewImg } from '../parks/screens/ViewImg';
 import { DetailScreen } from '../parks/screens/DetailScreen';
+import { EditPark } from '../parks/screens/EditParks';
+import { EditBiologicData } from '../parks/screens/EditBiologicData';
 //import RoutesParks from "../parks/routes/RoutesParks";
 
 const Stack = createNativeStackNavigator();
@@ -39,6 +41,9 @@ export default function RouterMain() {
                             <Stack.Screen name='ViewBiological' component={ViewBiological} />
                             <Stack.Screen name='ViewImg' component={ViewImg} />
                             <Stack.Screen name='DetailScreen' component={DetailScreen} />
+                            <Stack.Screen name='EditPark' component={EditPark} />
+                            <Stack.Screen name='EditBiologicData' component={EditBiologicData} />
+                            
                         </Stack.Group>
                     )
                         : (
