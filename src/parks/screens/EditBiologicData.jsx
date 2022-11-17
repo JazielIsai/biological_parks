@@ -37,7 +37,7 @@ export const EditBiologicData = ({route, navigation}) => {
                 naturalHistory: biologicData.naturalHistory,
                 statusConservation: biologicData.statusConservation == true ? '1' : '0',
                 authorBiologicData: biologicData.authorBiologicData,
-                idCategory: biologicData.idCategory,    
+                idCategory: biologicData.idCategory,
             });
 
             setBiologicData(biologicData);
@@ -75,7 +75,6 @@ export const EditBiologicData = ({route, navigation}) => {
             })
 
     }
-
 
     return (
         <ScrollView>

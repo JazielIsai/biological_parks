@@ -2,7 +2,7 @@ import React from 'react-native';
 import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-export const CardImg = ({data, uri, height = 380, width = 340}) => {
+export const CardImg = ({data, uri, height = 380, width = 340, marginBottom=20}) => {
 
     const navigation = useNavigation();
 
@@ -11,7 +11,7 @@ export const CardImg = ({data, uri, height = 380, width = 340}) => {
     }
 
     return (
-        <View style={{flex: 1, marginBottom: 20}} >
+        <View style={{flex: 1, marginBottom: marginBottom }} >
             <TouchableHighlight
                 //onPress={ () => onPress() }
                 activeOpacity={0.8}

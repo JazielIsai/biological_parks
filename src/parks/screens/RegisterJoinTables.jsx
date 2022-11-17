@@ -3,6 +3,7 @@ import {StyleSheet,
         View,
         Text,
         Alert,
+        ScrollView,
         TouchableOpacity} from "react-native";
 import {Picker} from '@react-native-picker/picker';
 import { AuthContext } from "../../auth/context/AuthContext";
@@ -16,21 +17,26 @@ export const RegisterJoinTables = () => {
 
     const [ getParks, setParks ] = useState([]);
     const [getBiologicData, setBiologicData] = useState([]);
+    const [getPivotTable, setPivotTable] = useState([]);
 
     const { form, onChange, onReset} = useForm({});
 
     const { data : getAllParks } = useFetchGet(`get_all_name_and_id_parks&user_id=${user.id}`);
     const { data : getAllBiologicData } = useFetchGet(`get_all_name_and_id_biologic_data&user_id=${user.id}`);
    
+    const { data : getDataPivotTable } = useFetchGet(`get_all_relation_biologic_data_and_parks_data`);
 
     useEffect( () => {
         try {
+
             setParks(JSON.parse(getAllParks));
             setBiologicData(JSON.parse(getAllBiologicData));
+            setPivotTable(JSON.parse(getDataPivotTable));
+
         } catch (error) {
             console.log("The error is by: ", error);
         }
-    }, [getAllParks, getAllBiologicData] )
+    }, [getAllParks, getAllBiologicData, getDataPivotTable] )
 
     const sendPost = () => {
 
@@ -62,63 +68,92 @@ export const RegisterJoinTables = () => {
 
 
     return (
-        <View style={styles.container}>
-            
-            <Text
-                style={{color: 'black', fontWeight: 'bold', fontSize: 18, marginTop: 15, marginBottom: 15}}
-            >
-                Relacionar los datos biológicos con el parque:
-            </Text>
-
-
-            <View style={{ display: 'flex', width: '80%', margin: 10 }} >
-
-                <Picker
-                    selectedValue={form.idParks}
-                    onValueChange={ (itemValue, itemIndex) => {
-                        onChange(itemValue, 'idParks');
-                    } }
-                    style={{ marginBottom: 15, }}
-                >
-                    <Picker.Item label="Seleccione el parque" value={0} />
-                    {
-                        getParks !== undefined &&
-                        getParks !== null &&
-                            getParks.map( (item, index) => (
-                                <Picker.Item key={index} label={item.namePark} value={item.id} />
-                            ))
-                    }
-                </Picker>
+        <ScrollView>
+            <View style={styles.container}>
                 
-                <Picker
-                    selectedValue={form.idBiologicData}
-                    onValueChange={ (itemValue, itemIndex) => {
-                        onChange(itemValue, 'idBiologicData');
-                    } }
-                    style={{ marginBottom: 15, }}
+                <Text
+                    style={{color: 'black', fontWeight: 'bold', fontSize: 18, marginTop: 15, marginBottom: 15}}
                 >
-                    <Picker.Item label="Seleccione los datos biológicos" value={0} />
-                    {
-                        getBiologicData !== undefined &&
-                        getBiologicData !== null &&
-                            getBiologicData.map( (item, index) => (
-                                <Picker.Item key={index} label={item.commonName} value={item.id} />
-                            ))
-                    }
-                </Picker>
+                    Relacionar los datos biológicos con el parque:
+                </Text>
+
+
+                <View style={{ display: 'flex', width: '80%', margin: 10 }} >
+
+                    <Picker
+                        selectedValue={form.idParks}
+                        onValueChange={ (itemValue, itemIndex) => {
+                            onChange(itemValue, 'idParks');
+                        } }
+                        style={{ marginBottom: 15, }}
+                    >
+                        <Picker.Item label="Seleccione el parque" value={0} />
+                        {
+                            getParks !== undefined &&
+                            getParks !== null &&
+                                getParks.map( (item, index) => (
+                                    <Picker.Item key={index} label={item.namePark} value={item.id} />
+                                ))
+                        }
+                    </Picker>
+                    
+                    <Picker
+                        selectedValue={form.idBiologicData}
+                        onValueChange={ (itemValue, itemIndex) => {
+                            onChange(itemValue, 'idBiologicData');
+                        } }
+                        style={{ marginBottom: 15, }}
+                    >
+                        <Picker.Item label="Seleccione los datos biológicos" value={0} />
+                        {
+                            getBiologicData !== undefined &&
+                            getBiologicData !== null &&
+                                getBiologicData.map( (item, index) => (
+                                    <Picker.Item key={index} label={item.commonName} value={item.id} />
+                                ))
+                        }
+                    </Picker>
+
+                </View>
+                
+                <TouchableOpacity
+                    style={styles.buttonSave}
+                    onPress={sendPost}
+                >
+                    <View style={styles.btnView}>
+                        <Text style={styles.textButton}> Guardar </Text>
+                    </View>
+                </TouchableOpacity>
+                
+                <Text 
+                    style={{ color: 'black', fontWeight: 'bold', fontSize: 18, marginTop: 35, marginBottom: 15 }}
+                > 
+                    La relación existente es: 
+                </Text>
+
+                {
+                    getPivotTable !== undefined &&
+                    getPivotTable !== null &&
+                        getPivotTable.map( (item, index) => (
+                            <View key={index} style={{ display: 'flex', flexDirection: 'row', width: '85%', margin: 10 }} >
+                                <Text 
+                                    style={{ color: 'black', fontWeight: 'bold', fontSize: 13, marginTop: 5, marginBottom: 5, width: '50%' }} 
+                                >
+                                    {item.namePark}
+                                </Text>
+                                
+                                <Text 
+                                    style={{ color: 'black', fontWeight: 'bold', fontSize: 13, marginTop: 5, marginBottom: 5, width: '50%' }} 
+                                >
+                                    {item.commonName}
+                                </Text>
+                            </View>
+                        ))
+
+                }
 
             </View>
-            
-            <TouchableOpacity
-                style={styles.buttonSave}
-                onPress={sendPost}
-            >
-                <View style={styles.btnView}>
-                    <Text style={styles.textButton}> Guardar </Text>
-                </View>
-            </TouchableOpacity>
-
-        </View>
+        </ScrollView>
     )
 }
 

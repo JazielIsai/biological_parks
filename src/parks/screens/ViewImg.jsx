@@ -1,9 +1,10 @@
 import React, {useContext, useState, useEffect} from "react";
-import {View, Text, TextInput, StyleSheet, VirtualizedList, FlatList, SafeAreaView} from "react-native";
+import {View, Text, TextInput, StyleSheet, VirtualizedList, FlatList, SafeAreaView, TouchableOpacity, Alert} from "react-native";
 import { AuthContext } from "../../auth/context/AuthContext";
 import { useFetchGet } from "../../hooks/useFetchGet";
 import { CardImg } from "../../components/CardImg";
 import { urlImg } from "../../Shared/baseUrl";
+import { requestPost } from "../../helpers/requestPost";
 
 export const ViewImg = () => {
 
@@ -22,11 +23,61 @@ export const ViewImg = () => {
         }
     },[data] )
 
+    const deleteImg = (id, data) => {
+        console.log("Delete Img", data);
+        
+        if (id === '' || id === undefined || id === null) {
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('path', data.ruta);
+
+
+        if (data.ruta.includes('ImgBiologicData')){
+            
+            requestPost('delete_img_biologic_data', formData)
+                .then( resp => {
+                    console.log(resp);
+                    if (resp.includes('1')) {
+                        Alert.alert('Imagen eliminada con éxito');
+                        setImgJoinTable(getImgJoinTable.filter( img => img.id !== id ));
+                    }
+                })
+        } else if (data.ruta.includes('ImgParksData')) {
+            
+            requestPost('delete_img_park_data', formData)
+                .then( resp => {
+                    console.log(resp);
+                    if (resp.includes('1')) {
+                        Alert.alert('Imagen eliminada con éxito');
+                        setImgJoinTable(getImgJoinTable.filter( img => img.id !== id ));
+                    }
+                })
+        }
+
+    }
+
     return (
         <SafeAreaView style={styles.container} >
             <FlatList
                 data={getImgJoinTable}
-                renderItem={ ({item}) => (<CardImg uri = {`${urlImg}${item.ruta}`} /> ) }
+                renderItem={ ({item}) => 
+                    (
+                        <View style={{ borderBottomWidth: 2, borderBottomColor: '#2c3e50', padding: 10 }}>
+                            <CardImg uri = {`${urlImg}${item.ruta}`} marginBottom={0} /> 
+                            <TouchableOpacity
+                                style={{marginTop: 0, backgroundColor: '#FF0000', padding: 8, borderRadius: 10, width: 150, alignSelf: 'center', alignItems: 'center', alignContent: 'center'}}
+                                onPress={ () => deleteImg(item.id, item) }
+                            >
+                                <View>
+                                    <Text>Eliminar</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    ) 
+                }
                 keyExtractor={ (item, index) => index.toString() }
             />
         </SafeAreaView>
