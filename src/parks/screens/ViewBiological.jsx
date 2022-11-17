@@ -84,7 +84,7 @@ export const ViewBiological = () => {
             <>
                 <View>
                     <Text style={styles.title} >
-                        Parques que { user.firstName } has registrado
+                        { user.firstname } has registrado estas fichas biologicas:
                     </Text>
                     {
                         getDataBiologic !== null &&
@@ -160,8 +160,11 @@ const styles = StyleSheet.create({
         alignItems : 'center',
     },
     title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
         marginTop: 10,
-
+        marginBottom: 10,
     }
 
 });

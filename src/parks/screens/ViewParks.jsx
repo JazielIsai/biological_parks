@@ -84,7 +84,7 @@ export const ViewParks = () => {
             <>
                 <View>
                     <Text style={styles.title} >
-                        Parques que { user.firstName } has registrado
+                        { user.firstname } has registrado estos parques:
                     </Text>
                     {
                         getDataParks !== null &&
@@ -151,7 +151,11 @@ const styles = StyleSheet.create({
         alignItems : 'center',
     },
     title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
         marginTop: 10,
+        marginBottom: 10,
 
     }
 

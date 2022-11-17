@@ -71,11 +71,7 @@ export const EditBiologicData = ({route, navigation}) => {
         requestPost('update_biologic_data', formData)
             .then (res => {
                 console.log(res);
-                if (res.includes('1')) {
-                    Alert.alert('Exito', 'Datos actualizados correctamente');
-                } else {
-                    Alert.alert('Error', 'Error al actualizar los datos');
-                }
+                Alert.alert('Exito', 'Datos actualizados correctamente');
             })
 
     }
