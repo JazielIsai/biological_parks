@@ -53,7 +53,7 @@ export const RegisterJoinTables = () => {
         } catch (error) {
             console.log("The error is by: ", error);
         }
-    }, [getAllParks, getAllBiologicData, getDataPivotTable, getDataByParksId, getDataByBiologicDataId, getDataByBiologicDataIdAndParksId, form.idParks, form.idBiologicData ] )
+    }, [getAllParks, getAllBiologicData, getDataPivotTable, getDataByParksId, getDataByBiologicDataId, getDataByBiologicDataIdAndParksId ] )
 
     const sendPost = () => {
 
