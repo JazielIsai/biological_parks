@@ -4,6 +4,7 @@ import {useFetchGet} from '../../hooks/useFetchGet';
 
 import { CardPoster } from "../../components/CardPoster";
 import { urlImg } from "../../Shared/baseUrl";
+import { requestGet } from "../../helpers/requestGet";
 
   
 
@@ -11,9 +12,10 @@ export const HomeScreen = () => {
 
     const id = useId()
 
+    const [cardItems, setCardItems] = useState([]);
+
     const {data} = useFetchGet('get_all_relation_biologic_data_and_parks_data_with_img_way_desc');
 
-    const [cardItems, setCardItems] = useState([]);
 
     const imgWait = 'https://us.123rf.com/450wm/musmellow/musmellow2011/musmellow201100058/159878472-icono-de-imagen.jpg?ver=6';
 
@@ -21,7 +23,15 @@ export const HomeScreen = () => {
     useEffect( ()=> {
 
         try {
-            setCardItems(JSON.parse(data));
+
+            requestGet('get_all_relation_biologic_data_and_parks_data_with_img_way_desc')
+                .then( resp => {
+                    setCardItems(JSON.parse(resp));                    
+                })
+                .catch( err => {
+                    console.log(err);
+                })
+
         } catch (error) {
             console.log("The error is: ",error);
         }
