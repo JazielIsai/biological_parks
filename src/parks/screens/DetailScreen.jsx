@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import {View, Text, StyleSheet, ScrollView, FlatList} from 'react-native';
 import { CardImg } from '../../components/CardImg';
 import { Maps } from '../../components/Maps';
 import { useFetchGet } from '../../hooks/useFetchGet';

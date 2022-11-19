@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image} from 'react-native';
+import React from 'react';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {Background} from "../components/Background";
 import {useNavigation} from "@react-navigation/native";
 import { requestPost } from '../../helpers/requestPost';

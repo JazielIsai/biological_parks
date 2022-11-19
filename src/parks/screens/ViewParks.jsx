@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import {View, Text, TextInput, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, ScrollView, Alert} from "react-native";
+import {View, Text, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Alert} from "react-native";
 import { AuthContext } from "../../auth/context/AuthContext";
 import { useFetchGet } from "../../hooks/useFetchGet";
 import { CardText } from "../../components/CardText";
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
         alignItems : 'center',
     },
     title: {
+        color: '#000',
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',

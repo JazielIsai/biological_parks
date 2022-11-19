@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image, Button} from 'react-native';
+import React, {useState, useContext} from 'react';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Background} from "../components/Background";
 import {AuthContext} from "../context/AuthContext";

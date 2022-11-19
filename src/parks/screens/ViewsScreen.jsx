@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TextInput, StyleSheet, FlatList, ScrollView} from "react-native";
+import {View, Text, TextInput, StyleSheet, ScrollView} from "react-native";
 // import CheckBox from '@react-native-community/checkbox';
 import {Picker} from '@react-native-picker/picker';
 
@@ -9,9 +9,7 @@ import { useForm } from '../../hooks/useForm';
 
 export const ViewsScreen = () => {
 
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
     const [getSearch, setSearch] = useState('');
-
     const {onChange, onReset, form} = useForm({});
 
     const {data : getAllCategory} = useFetchGet('get_all_category');
@@ -105,6 +103,7 @@ const styles = StyleSheet.create({
     },
     filter: {
         margin: 4,
+        color: '#000'
         
     },
     search: {
@@ -112,18 +111,21 @@ const styles = StyleSheet.create({
         margin: 'auto',
         alignItems: 'center',
         marginBottom: 5,
+        color: '#000'
           
     },
     searchText:{
         marginRight: 6,
         marginLeft: 8,
         fontSize: 14,
+        color: '#000'
     },
     searchTextInput: {
         display: 'flex',
         width: 250,
         height: 40,
         fontSize: 14,
+        color: '#000'
     },
     optionFilter: {
         display: 'flex',
@@ -132,11 +134,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         marginBottom: 5,
+        color: '#000'
         
     },
     filterOption: {
         flexDirection: 'row',
         margin: 'auto',
         alignItems: 'center',
+        color: '#000'
     }
 });

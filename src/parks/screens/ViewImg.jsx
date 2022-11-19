@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from "react";
-import {View, Text, TextInput, StyleSheet, VirtualizedList, FlatList, SafeAreaView, TouchableOpacity, Alert} from "react-native";
+import {View, Text, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Alert} from "react-native";
 import { AuthContext } from "../../auth/context/AuthContext";
 import { useFetchGet } from "../../hooks/useFetchGet";
 import { CardImg } from "../../components/CardImg";

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import openMap from 'react-native-open-maps';
 
 
@@ -24,6 +24,7 @@ export const Maps = ({latitude, longitude, customStyle}) => {
                     style = {{
                         padding: 0,
                         marginTop: 0,
+                        color: '#000',
                     }}
                 >
                     Click To Open Maps 🗺

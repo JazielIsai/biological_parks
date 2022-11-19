@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, TextInput, StyleSheet} from "react-native";
+import {View, StyleSheet} from "react-native";
 import { useFetchGet } from '../hooks/useFetchGet';
 import { CardText } from './CardText';
 
@@ -43,6 +43,7 @@ export const Search = ({getSearch}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        color: '#000',
     },
 
 });

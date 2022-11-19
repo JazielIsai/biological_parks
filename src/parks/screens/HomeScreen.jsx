@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useId } from "react";
-import {Text, View, SafeAreaView, Image, StyleSheet, StatusBar} from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import { View, SafeAreaView, Image, StyleSheet, FlatList} from "react-native";
 import {useFetchGet} from '../../hooks/useFetchGet';
 
 import { CardPoster } from "../../components/CardPoster";
-import { Background } from "../components/Background";
 import { urlImg } from "../../Shared/baseUrl";
 
   
@@ -87,6 +85,7 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      color: '#000',
       backgroundColor: 'white'
     },
     scrollView: {

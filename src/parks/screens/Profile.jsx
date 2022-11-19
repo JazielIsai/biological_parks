@@ -101,7 +101,7 @@ export const Profile = () => {
 
 
                     <View>
-                        <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10, textAlign: 'center'}}>
+                        <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10, textAlign: 'center', color: '#000'}}>
                             Visualizar
                         </Text>
                         
@@ -159,11 +159,13 @@ const styles = StyleSheet.create({
       },
       title: {
         fontSize: 32,
+        color: '#000',
       },
     infoBtnContacto: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        color: '#000',
 
     },
     viewsCards:{

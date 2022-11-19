@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {View, Text, ScrollView, TextInput, StyleSheet, TouchableOpacity, Image} from "react-native";
+import React from "react";
+import {View, Text, StyleSheet, TouchableOpacity, Image} from "react-native";
 
 export const EncabezadoProfile = ( {uirBackground, uriProfile, userName} ) => {
 
@@ -20,7 +20,7 @@ export const EncabezadoProfile = ( {uirBackground, uriProfile, userName} ) => {
                     />
                 </TouchableOpacity>
                 <Text 
-                    style={{fontSize: 20, fontWeight: 'bold', marginTop: 10, textAlign: 'center'}}
+                    style={{fontSize: 20, fontWeight: 'bold', marginTop: 10, textAlign: 'center', color: '#000'}}
                 >
                     {userName}
                 </Text>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         shadowRadius: 7,
         elevation: 9,
-        
+        color: '#000',
     },
     imgProfile: {
         width: 150,

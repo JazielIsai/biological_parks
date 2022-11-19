@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image,ScrollView } from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { AuthContext } from '../../auth/context/AuthContext';
 import { useFetchGet } from '../../hooks/useFetchGet';

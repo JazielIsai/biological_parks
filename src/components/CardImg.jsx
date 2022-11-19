@@ -1,5 +1,5 @@
 import React from 'react-native';
-import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native';
+import { View, StyleSheet, TouchableHighlight, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
 export const CardImg = ({data, uri, height = 380, width = 340, marginBottom=20}) => {
@@ -55,5 +55,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         textAlign: 'center',
+        color: '#000',
     }
 });

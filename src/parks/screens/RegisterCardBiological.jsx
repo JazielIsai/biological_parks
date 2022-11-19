@@ -4,7 +4,7 @@ import {Picker} from '@react-native-picker/picker';
 import { useFetchGet } from '../../hooks/useFetchGet';
 import { useForm } from '../../hooks/useForm';
 import {requestPost} from '../../helpers/requestPost';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image,ScrollView,Button} from "react-native";
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ScrollView} from "react-native";
 
 
 
@@ -50,6 +50,7 @@ export const RegisterCardBiological = () => {
 
         requestPost('add_biologic_data', formData)
             .then (res => {
+                Alert.alert('Registro exitoso');
                 console.log(res);
                 onReset({});
             })

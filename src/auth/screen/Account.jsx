@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from "react";
-import {View, Text, TextInput, StyleSheet} from "react-native";
+import React, { useContext} from "react";
+import {View, Text, StyleSheet} from "react-native";
 import { AuthContext } from "../context/AuthContext";
 import { EncabezadoProfile } from "../../components/EncabezadoProfile";
 
@@ -15,10 +15,10 @@ export const Account = () => {
             <EncabezadoProfile uirBackground={url} uriProfile={uriProfile} userName={`${user.firstname}`} />
 
             <View >
-                <Text> Nombre:  { `${user.firstname} ${user.lastname}` }  </Text>
-                <Text> Titulo Academico: {user.academicTitle} </Text>
-                <Text> Correo:  {user.email}  </Text>
-                <Text> Rol:  {user.Rol}  </Text>
+                <Text style={{color: '#000'}} > Nombre:  { `${user.firstname} ${user.lastname}` }  </Text>
+                <Text style={{color: '#000'}} > Titulo Academico: {user.academicTitle} </Text>
+                <Text style={{color: '#000'}}> Correo:  {user.email}  </Text>
+                <Text style={{color: '#000'}}> Rol:  {user.Rol}  </Text>
             </View>
         </View>
     )

@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, TextInput, TouchableOpacity, StyleSheet, VirtualizedList} from "react-native";
+import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
 
 
 export const CardText = ({title, subtitle, description, onPressLink, link, backgroundColor = '#fffcee'}) => {
@@ -51,27 +51,32 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
+        color: '#000',
         
     },
     titleMain: {
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
+        color: '#000',
     },
     subtitleMain: {
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'right',
+        color: '#000',
     },
     descriptionMain: {
         fontSize: 12,
         textAlign: 'justify',
+        color: '#000',
     },
     btnLink: {
         backgroundColor: '#EEEEEE',
         padding: 10,
         borderRadius: 10,
         marginTop: 10,
+        color: '#000',
 
     }
 
