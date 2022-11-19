@@ -3,7 +3,6 @@ import {StyleSheet,
         View,
         Text,
         Alert,
-        ScrollView,
         FlatList,
         TouchableOpacity} from "react-native";
 import {Picker} from '@react-native-picker/picker';
@@ -11,6 +10,7 @@ import { AuthContext } from "../../auth/context/AuthContext";
 import {useFetchGet} from "../../hooks/useFetchGet";
 import { useForm } from "../../hooks/useForm";
 import {requestPost} from '../../helpers/requestPost';
+import { requestGet } from "../../helpers/requestGet";
 
 export const RegisterJoinTables = () => {
 
@@ -29,7 +29,6 @@ export const RegisterJoinTables = () => {
     const { data : getAllParks } = useFetchGet(`get_all_name_and_id_parks&user_id=${user.id}`);
     const { data : getAllBiologicData } = useFetchGet(`get_all_name_and_id_biologic_data&user_id=${user.id}`);
    
-    const { data : getDataPivotTable } = useFetchGet(`get_all_relation_biologic_data_and_parks_data`);
     const { data: getDataByParksId } = useFetchGet(`get_all_name_park_and_biologic_data_from_parks_id&id=${form.idParks}`);
     const { data: getDataByBiologicDataId } = useFetchGet(`get_all_name_park_and_biologic_data_from_biologic_data_id&id=${form.idBiologicData}`);
     const { data: getDataByBiologicDataIdAndParksId } = useFetchGet(`get_all_name_park_and_biologic_data_from_biologic_data_id_and_parks_id&biologic_data_id=${form.idBiologicData}&parks_id=${form.idParks}`);
@@ -41,7 +40,15 @@ export const RegisterJoinTables = () => {
             setBiologicData(JSON.parse(getAllBiologicData));
 
             if (form.idBiologicData == 0 && form.idParks == 0) {
-                setPivotTable(JSON.parse(getDataPivotTable));
+
+                requestGet('get_all_relation_biologic_data_and_parks_data')
+                    .then( resp => {
+                        setPivotTable(JSON.parse(resp));
+                    })
+                    .catch( err => {
+                        console.log(err);
+                    })
+
             } else if (form.idBiologicData != 0 && form.idParks != 0) {
                 setPivotTable(JSON.parse(getDataByBiologicDataIdAndParksId));
             } else if (form.idBiologicData != 0) {
@@ -53,7 +60,7 @@ export const RegisterJoinTables = () => {
         } catch (error) {
             console.log("The error is by: ", error);
         }
-    }, [getAllParks, getAllBiologicData, getDataPivotTable, getDataByParksId, getDataByBiologicDataId, getDataByBiologicDataIdAndParksId ] )
+    }, [getAllParks, getAllBiologicData, getDataByParksId, getDataByBiologicDataId, getDataByBiologicDataIdAndParksId ] )
 
     const sendPost = () => {
 
