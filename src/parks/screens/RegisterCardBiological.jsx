@@ -106,6 +106,7 @@ export const RegisterCardBiological = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
+                        selectionColor={'gray'}
                         onChangeText={ text => onChange(text, 'geographicalDistribution') }
                         value={form?.geographicalDistribution}
                     />
@@ -135,6 +136,7 @@ export const RegisterCardBiological = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
+                        selectionColor={'gray'}
                         onChangeText={ text => onChange(text, 'authorBiologicData') }
                         value={form?.authorBiologicData}
                     />

@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         elevation: 9,
     },
     text: {
-        color: '#000',
+        color: '#0008ff',
     },
     textSave: {
         color: 'rgb(187,204,246)',

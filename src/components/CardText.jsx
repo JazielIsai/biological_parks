@@ -2,7 +2,7 @@ import React from "react";
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
 
 
-export const CardText = ({title, subtitle, description, onPressLink, link, backgroundColor = '#fffcee'}) => {
+export const CardText = ({title, subtitle, description, onPressLink, link = '', backgroundColor = '#e0e0e0'}) => {
 
 
 
@@ -21,16 +21,22 @@ export const CardText = ({title, subtitle, description, onPressLink, link, backg
                 { description }
             </Text>
 
-            <TouchableOpacity
-                onPress={onPressLink}
-                style={styles.btnLink}
-            >
-                <View>
-                    <Text>
-                        { link }
-                    </Text>
-                </View>
-            </TouchableOpacity>
+            {
+                link !== '' && onPressLink !== undefined && (
+                    <View style={styles.containerBtn} >
+                        <TouchableOpacity
+                            onPress={onPressLink}
+                            style={styles.btnLink}
+                        >
+                            <View>
+                                <Text>
+                                    { link }
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                ) 
+            }
 
         </View>
     )
@@ -41,11 +47,10 @@ const styles = StyleSheet.create({
     container: {
         margin: 10,
         padding: 10,
-        width: 350,
-        borderRadius: 10,
-        shadowColor: "#eee",
+        width: '95%',
+        borderRadius: 15,
         shadowOffset: {
-            width: 1,
+            width: 0,
             height: 2,
         },
         shadowOpacity: 0.25,
@@ -58,7 +63,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#000',
+        color: '#000fff',
     },
     subtitleMain: {
         fontSize: 15,
@@ -71,13 +76,25 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         color: '#000',
     },
+    containerBtn: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+
+    },
     btnLink: {
-        backgroundColor: '#EEEEEE',
+        backgroundColor: '#e0e0e0',
         padding: 10,
         borderRadius: 10,
         marginTop: 10,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
         color: '#000',
-
     }
 
 

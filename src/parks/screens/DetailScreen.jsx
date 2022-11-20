@@ -26,12 +26,13 @@ export const DetailScreen = ({navigation}) => {
     useEffect( () => {
 
         try {
-            console.log("getRelationBewttenBiologicDataAndParks ",JSON.parse(getRelationBewttenBiologicDataAndParks)[0]);
+
             setBiologicImage(JSON.parse(getBiologicImage));
             setParkImage(JSON.parse(getParkImage));
 
             setBiologicAndParksData(JSON.parse(getRelationBewttenBiologicDataAndParks)[0]);
 
+            console.log("IMGANES----->",getBiologicImage, getParkImage);
             setImages([...JSON.parse(getBiologicImage), ...JSON.parse(getParkImage)]);
         } catch (error) {
             console.log("The error is: ",error);
@@ -46,13 +47,22 @@ export const DetailScreen = ({navigation}) => {
 
             <View style={styles.container}>
 
-                <View> 
+                <View  
+                    style={{flex: 1, width: '100%', display: 'flex', borderBottomWidth: 2, borderBottomColor: '#2c3e50'}}
+                > 
                 {
-                    biologicImage !== null &&
-                    biologicImage !== undefined && (
+                    images !== null &&
+                    images !== undefined && (
                         <FlatList
                             data={images}
-                            renderItem={ ({item}) => (<CardImg data={item}  uri={urlImg.concat(item.ruta)} />) }
+                            renderItem={ ({item}) => (  
+                                    <CardImg 
+                                        data={item}  
+                                        uri={urlImg.concat(item.ruta)}
+                                        width={340}
+                                    />
+                                )
+                            }
                             horizontal={true}
                             keyExtractor={ (item, index) => index.toString() }
                         />
@@ -68,12 +78,20 @@ export const DetailScreen = ({navigation}) => {
                             <View style={{flex: 1, display: 'flex', margin: 10, width: '90%' }}>
                                 <View style={{ display: 'flex', flexDirection: 'column', width: '90%' }} >
                                     <Text style={styles.title}> {getBiologicAndParksData.commonName} </Text>
-                                    <Text style={styles.title}> {getBiologicAndParksData.scientificName} </Text>
+                                    <Text style={styles.subtitle}> {getBiologicAndParksData.scientificName} </Text>
                                 </View>
                                 <Text style={styles.text}> {getBiologicAndParksData.description} </Text>
                                 <Text style={styles.text}> {getBiologicAndParksData.naturalHistory} </Text>
-                                <Text style={styles.title}> {getBiologicAndParksData.authorBiologicData} </Text>
                                 <Text style={styles.text}> {getBiologicAndParksData.geographicalDistribution} </Text>
+                                <Text style={{...styles.subtitle, marginTop: 6, fontSize: 16, }}> 
+                                    Autor de la Ficha Biologica: {' '}
+                                    <Text style={{...styles.subtitle, fontSize: 17}} >
+                                        {getBiologicAndParksData.authorBiologicData} 
+                                    </Text>
+                                </Text>
+                                <View style={{borderBottomWidth:1, borderBottomColor:'#0008ff', margin: 20, }} >
+
+                                </View>
                                 <Text style={styles.title}> {getBiologicAndParksData.namePark} </Text>
                                 <Text style={styles.text}> {getBiologicAndParksData?.recreationAreas} </Text>
                                 
@@ -124,10 +142,17 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#000',
+        color: '#0008ff',
         textAlign: 'center',
         marginBottom: 10,
         textAlign: 'auto',
+    },
+    subtitle: {
+        fontSize: 18,
+        fontWeight: '400',
+        color: '#0008ff',
+        marginBottom: 10,
+        textAlign: 'right',
     },
     text: {
         fontSize: 16,

@@ -9,7 +9,7 @@ export const BtnLink = ({text, onPress, stylesBtnLink = {}}) => {
             onPress={onPress}
         >
             <View>
-                <Text>{text}</Text>
+                <Text style={{color: '#fff'}} >{text}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -19,11 +19,12 @@ export const BtnLink = ({text, onPress, stylesBtnLink = {}}) => {
 
 const styles = StyleSheet.create({
     btn : {
-        backgroundColor: '#B1DEFF',
+        backgroundColor: '#0093E9',
         borderRadius: 20,
         width: 120,
         height: 40,
         display: 'flex',
+        color: '#fff',
         justifyContent: 'center',
         alignItems: 'center',
         shadowColor: "#000",

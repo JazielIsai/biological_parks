@@ -127,7 +127,7 @@ export const RegisterPark = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
-                        selectionColor={'white'}
+                        selectionColor={'gray'}
                         onChangeText={ (value) => onChange(value, 'boundaries') }
                         value={form?.boundaries}
                     />
@@ -157,7 +157,7 @@ export const RegisterPark = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
-                        selectionColor={'white'}
+                        selectionColor={'gray'}
                         onChangeText={ (value) => onChange(value, 'suburb') }
                         value={form?.suburb}
                     />
@@ -166,7 +166,7 @@ export const RegisterPark = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
-                        selectionColor={'white'}
+                        selectionColor={'gray'}
                         onChangeText={ (value) => onChange(value, 'latitude') }
                         value={form?.latitude}
                         keyboardType={'numeric'}
@@ -177,7 +177,7 @@ export const RegisterPark = () => {
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
                         underlineColorAndroid={'gray'}
-                        selectionColor={'white'}
+                        selectionColor={'gray'}
                         onChangeText={ (value) => onChange(value, 'length') }
                         value={form?.length}
                         keyboardType={'numeric'}

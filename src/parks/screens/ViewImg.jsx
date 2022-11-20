@@ -65,8 +65,12 @@ export const ViewImg = () => {
                 data={getImgJoinTable}
                 renderItem={ ({item}) => 
                     (
-                        <View style={{ borderBottomWidth: 2, borderBottomColor: '#2c3e50', padding: 10 }}>
-                            <CardImg uri = {`${urlImg}${item.ruta}`} marginBottom={0} /> 
+                        <View style={{flex: 1, width: '100%', display: 'flex', borderBottomWidth: 2, borderBottomColor: '#2c3e50', padding: 10 }}>
+                            <CardImg 
+                                uri = {`${urlImg}${item.ruta}`} 
+                                marginBottom = {0} 
+                                width = {'100%'}
+                            /> 
                             <TouchableOpacity
                                 style={{marginTop: 0, backgroundColor: '#FF0000', padding: 8, borderRadius: 10, width: 150, alignSelf: 'center', alignItems: 'center', alignContent: 'center'}}
                                 onPress={ () => deleteImg(item.id, item) }
@@ -88,8 +92,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
+        display: 'flex', 
         backgroundColor: '#fff',
-        alignItems: 'center',
 
     }
 })

@@ -1,13 +1,19 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, StatusBar} from 'react-native';
+
 
 export const Background = () => {
 
     return (
+        <>
+        <StatusBar
+            animated={true}
+            backgroundColor="#0008ff"
+        />
         <View
             style={{
                 position: 'absolute',
-                backgroundColor: '#6956D6',
+                backgroundColor: '#0008ff',
                 top: -350,
                 width: 1000,
                 height: 1200,
@@ -17,5 +23,6 @@ export const Background = () => {
             }}
         >
         </View>
+        </>
     )
 }

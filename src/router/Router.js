@@ -13,6 +13,7 @@ import { ViewImg } from '../parks/screens/ViewImg';
 import { DetailScreen } from '../parks/screens/DetailScreen';
 import { EditPark } from '../parks/screens/EditParks';
 import { EditBiologicData } from '../parks/screens/EditBiologicData';
+import { StatusBar } from 'react-native';
 //import RoutesParks from "../parks/routes/RoutesParks";
 
 const Stack = createNativeStackNavigator();
@@ -23,6 +24,11 @@ export default function RouterMain() {
     const {logged} = useContext(AuthContext);
 
     return (
+        <>
+        <StatusBar
+            animated={true}
+            backgroundColor="#0093E9"
+        />
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={ {
@@ -57,5 +63,6 @@ export default function RouterMain() {
             </Stack.Navigator>
 
         </NavigationContainer>
+        </>
     );
 }
