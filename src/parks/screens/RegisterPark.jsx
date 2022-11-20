@@ -86,18 +86,19 @@ export const RegisterPark = () => {
                         placeholder={'Nombre'}
                         style={styles.textInput}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ (value) => onChange(value, 'namePark') }
                         value={form?.namePark}
                     />
 
                     <TextInput
                         placeholder={'Antecedentes'}
-                        placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        style={{...styles.textInput, height: 150, borderWidth: 1, borderColor: '#0093E9', borderRadius: 10, marginTop: 10}}
+                        selectionColor={'#0093E9'}
+                        multiline={true}
+                        numberOfLines={8}
+                        editable={true}
                         onChangeText={ (value) => onChange(value, 'trainingbackground') }
                         value={form?.trainingbackground}
                     />
@@ -106,8 +107,9 @@ export const RegisterPark = () => {
                         placeholder={'Área'}
                         style={styles.textInput}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
+                        multiline={true}
                         onChangeText={ (value) => onChange(value, 'areaha') }
                         value={form?.areaha}
                     />
@@ -116,8 +118,9 @@ export const RegisterPark = () => {
                         placeholder={'Forma'}
                         style={styles.textInput}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
+                        multiline={true}
                         onChangeText={ (value) => onChange(value, 'form') }
                         value={form?.form}
                     />
@@ -126,8 +129,9 @@ export const RegisterPark = () => {
                         placeholder={'Colindancias'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
+                        multiline={true}
                         onChangeText={ (value) => onChange(value, 'boundaries') }
                         value={form?.boundaries}
                     />
@@ -136,8 +140,9 @@ export const RegisterPark = () => {
                         placeholder={'Áreas de recreo'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
+                        multiline={true}
                         onChangeText={ (value) => onChange(value, 'recreationareas') }
                         value={form?.recreationareas}
                     />
@@ -146,8 +151,8 @@ export const RegisterPark = () => {
                         placeholder={'Calle'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ (value) => onChange(value, 'street') }
                         value={form?.street}
                     />
@@ -156,8 +161,8 @@ export const RegisterPark = () => {
                         placeholder={'Colonia'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ (value) => onChange(value, 'suburb') }
                         value={form?.suburb}
                     />
@@ -165,8 +170,8 @@ export const RegisterPark = () => {
                         placeholder={'Latitud'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ (value) => onChange(value, 'latitude') }
                         value={form?.latitude}
                         keyboardType={'numeric'}
@@ -176,8 +181,8 @@ export const RegisterPark = () => {
                         placeholder={'Longitud'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ (value) => onChange(value, 'length') }
                         value={form?.length}
                         keyboardType={'numeric'}
@@ -265,7 +270,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textButton: {
-        color: 'rgb(0,0,0)',
+        color: '#0008ff',
         fontSize: 20,
         fontWeight: '400',
         textAlign: 'center',

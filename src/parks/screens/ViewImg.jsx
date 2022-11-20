@@ -70,7 +70,7 @@ export const ViewImg = () => {
                                 uri = {`${urlImg}${item.ruta}`} 
                                 marginBottom = {0} 
                                 width = {'100%'}
-                            /> 
+                            />
                             <TouchableOpacity
                                 style={{marginTop: 0, backgroundColor: '#FF0000', padding: 8, borderRadius: 10, width: 150, alignSelf: 'center', alignItems: 'center', alignContent: 'center'}}
                                 onPress={ () => deleteImg(item.id, item) }

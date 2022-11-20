@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textButton: {
-        color: 'rgb(0,0,0)',
+        color: '#0008ff',
         fontSize: 20,
         textAlign: 'center',
     },

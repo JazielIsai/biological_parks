@@ -145,8 +145,8 @@ export const RegisterImg = () => {
                 placeholder={'Nombre de la especie'}
                 style={styles.textInput}
                 placeholderTextColor={'rgba(128,128,128,0.8)'}
-                underlineColorAndroid={'gray'}
-                selectionColor={'gray'}
+                underlineColorAndroid={'#0093E9'}
+                selectionColor={'#0093E9'}
                 onChangeText={ text => onChange(text, 'name') }
                 value={form?.name}
             />
@@ -155,8 +155,8 @@ export const RegisterImg = () => {
                 placeholder="Autor de la imagen"
                 style={styles.textInput}
                 placeholderTextColor={'rgba(128,128,128,0.8)'}
-                underlineColorAndroid={'gray'}
-                selectionColor={'gray'}
+                underlineColorAndroid={'#0093E9'}
+                selectionColor={'#0093E9'}
                 onChangeText={ text => onChange(text, 'author') }
                 value={form?.author}
             />
@@ -173,7 +173,7 @@ export const RegisterImg = () => {
                         style={styles.button} 
                         onPress={onImageLibraryPress}
                     >   
-                        <Text style={styles.buttonText}>
+                        <Text style={{color: '#fff'}}>
                             Library
                         </Text>
                     </TouchableOpacity>
@@ -181,7 +181,7 @@ export const RegisterImg = () => {
                         style={styles.button} 
                         onPress={onCameraPress}
                     >
-                        <Text style={styles.buttonText}>
+                        <Text style={{color: '#fff'}}>
                             Camera
                         </Text>
                     </TouchableOpacity>
@@ -286,7 +286,8 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     button: {
-        backgroundColor: 'gray',
+        backgroundColor: '#0093E9',
+
         width: 100,
         height: 40,
         borderRadius: 10,
@@ -312,7 +313,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textButton: {
-        color: 'rgb(0,0,0)',
+        color: '#0008ff',
         fontSize: 20,
         textAlign: 'center',
     },

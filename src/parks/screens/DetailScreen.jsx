@@ -95,7 +95,10 @@ export const DetailScreen = ({navigation}) => {
                                 <Text style={styles.title}> {getBiologicAndParksData.namePark} </Text>
                                 <Text style={styles.text}> {getBiologicAndParksData?.recreationAreas} </Text>
                                 
-                                <View style={{flex: 1, display: 'flex', width: '90%', padding: 10, }}>
+                                <Text style={styles.text}> Calle:  {getBiologicAndParksData.street} </Text>
+                                <Text style={styles.text}> Colonia: {getBiologicAndParksData.suburb} </Text>
+                                
+                                <View style={{flex: 1, display: 'flex', width: '90%', padding: 10, marginBottom: 10,  }}>
                                     <Maps 
                                         latitude={getBiologicAndParksData.latitude}  
                                         longitude= {getBiologicAndParksData.length} 
@@ -110,8 +113,6 @@ export const DetailScreen = ({navigation}) => {
                                     />
                                 </View>
 
-                                <Text style={styles.text}> {getBiologicAndParksData.street} </Text>
-                                <Text style={styles.text}> {getBiologicAndParksData.suburb} </Text>
                             </View>
                         ) :
                         (

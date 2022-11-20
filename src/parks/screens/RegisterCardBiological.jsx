@@ -73,8 +73,8 @@ export const RegisterCardBiological = () => {
                         placeholder={'Nombre comun'}
                         style={styles.textInput}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ text => onChange(text, 'commonName') }
                         value={form?.commonName}
 
@@ -84,19 +84,21 @@ export const RegisterCardBiological = () => {
                         placeholder={'Nombre cientifico'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'} 
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
+                        multiline={true}
                         onChangeText={ text => onChange(text, 'scientificName') }
                         value={form?.scientificName}
                     />
                     
                     <TextInput
                         placeholder={'Descripcion'}
-                        style={styles.textInput}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        style={{...styles.textInput, height: 150, borderWidth: 1, borderColor: '#0093E9', borderRadius: 10, marginTop: 10}}
+                        selectionColor={'#0093E9'}
                         multiline={true}
+                        numberOfLines={8}
+                        editable={true}                        
                         onChangeText={ text => onChange(text, 'description') }
                         value={form?.description}
                     />                    
@@ -105,8 +107,9 @@ export const RegisterCardBiological = () => {
                         placeholder={'Dsitrubucion geografica'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
+                        multiline={true}
                         onChangeText={ text => onChange(text, 'geographicalDistribution') }
                         value={form?.geographicalDistribution}
                     />
@@ -114,9 +117,11 @@ export const RegisterCardBiological = () => {
                     <TextInput
                         placeholder={'Historia natural'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        style={{...styles.textInput, height: 150, borderWidth: 1, borderColor: '#0093E9', borderRadius: 10, marginTop: 10}}
+                        selectionColor={'#0093E9'}
+                        multiline={true}
+                        numberOfLines={8}
+                        editable={true}
                         onChangeText={ text => onChange(text, 'naturalHistory') }
                         value={form?.naturalHistory}
                     />
@@ -135,8 +140,8 @@ export const RegisterCardBiological = () => {
                         placeholder={'Autor de la ficha'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ text => onChange(text, 'authorBiologicData') }
                         value={form?.authorBiologicData}
                     />
@@ -206,7 +211,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textButton: {
-        color: 'rgb(0,0,0)',
+        color: '#0008ff',
         fontSize: 20,
         textAlign: 'center',
     },
