@@ -94,7 +94,7 @@ export const ViewBiological = () => {
                                 renderItem={ ({item}) => 
                                     (
                                         <View
-                                            style={{ backgroundColor: '#bdc3c7', borderBottomWidth: 2, borderBottomColor: '#2c3e50', padding: 10,}}
+                                            style={{ borderBottomWidth: 2, borderBottomColor: '#2c3e50', padding: 10,}}
                                         >
                                             <CardText 
                                                 backgroundColor = '#bdc3c7'
@@ -113,8 +113,7 @@ export const ViewBiological = () => {
                                                         <Text> Historia: {item.naturalHistory}</Text>
                                                     </> 
                                                 }
-                                                onPressLink = { () => (<Maps latitude={item.latitude} longitude={item.length} />) }
-                                                link={'Ir a Google Maps'}
+                                                
                                             />
 
                                             <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }} >
@@ -124,7 +123,7 @@ export const ViewBiological = () => {
                                                     onPress={ () => updateBiologicData(item.id) }
                                                 >
                                                     <View>
-                                                        <Text>Editar</Text>
+                                                        <Text style={{ color: '#000' }}>Editar</Text>
                                                     </View>
                                                 </TouchableOpacity>
 
@@ -133,7 +132,7 @@ export const ViewBiological = () => {
                                                     onPress={ () => deleteBiologicData(item.id) }
                                                 >
                                                     <View>
-                                                        <Text>Eliminar</Text>
+                                                        <Text style={{ color: '#fff' }}>Eliminar</Text>
                                                     </View>
                                                 </TouchableOpacity>
                                                 
@@ -160,12 +159,15 @@ const styles = StyleSheet.create({
         alignItems : 'center',
     },
     title: {
-        color: '#000',
+        color: '#000fff',
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
         marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#000',
         marginBottom: 10,
+        
     }
 
 });

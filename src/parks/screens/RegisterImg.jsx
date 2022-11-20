@@ -196,10 +196,11 @@ export const RegisterImg = () => {
                     onValueChange={(itemValue, itemIndex) => {
                         setOptionSave(itemValue);
                     }}
+                    style={{ color: '#0008ff' }}
                 >
-                    <Picker.Item label="Asignar imagen a: " />
-                    <Picker.Item label="Parque" value={'Parque'} />
-                    <Picker.Item label="Ficha Biologica" value={'FBiologica'} />
+                    <Picker.Item label="Asignar imagen a: " style={{ color: '#0008ff' }} />
+                    <Picker.Item label="Parque" value={'Parque'} style={{ color: '#0008ff' }} />
+                    <Picker.Item label="Ficha Biologica" value={'FBiologica'} style={{ color: '#0008ff' }} />
                 </Picker>
 
                 {
@@ -209,13 +210,14 @@ export const RegisterImg = () => {
                             onValueChange={ (itemValue, itemIndex) => {
                                 onChange(itemValue, 'idParks');
                             } }
+                            style={{ color: '#0008ff' }}
                         >
-                            <Picker.Item label="Seleccionar Parque" value={0} />
+                            <Picker.Item label="Seleccionar Parque" value={0} style={{ color: '#0008ff' }} />
                             {
                                 getParks !== undefined &&
                                 getParks !== null &&
                                     getParks.map( (item, index) => (
-                                        <Picker.Item key={index} label={item.namePark} value={item.id} />
+                                        <Picker.Item key={index} label={item.namePark} value={item.id} style={{ color: '#0008ff' }} />
                                     ))
                             }
                         </Picker>
@@ -225,13 +227,14 @@ export const RegisterImg = () => {
                                 onValueChange={ (itemValue, itemIndex) => {
                                     onChange(itemValue, 'idBiologicData');
                                 } }
+                                style={{ color: '#0008ff' }}
                             >
-                                <Picker.Item label="Seleccione los ficha biológica" value={0} />
+                                <Picker.Item label="Seleccione los ficha biológica" value={0} style={{ color: '#0008ff' }} />
                                 {
                                     getBiologicData !== undefined &&
                                     getBiologicData !== null &&
                                         getBiologicData.map( (item, index) => (
-                                            <Picker.Item key={index} label={item.commonName} value={item.id} />
+                                            <Picker.Item key={index} label={item.commonName} value={item.id} style={{ color: '#0008ff' }}  />
                                         ))
                                 }
                             </Picker>
@@ -266,6 +269,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 250,
         marginVertical: 10,
+        color: '#000',
     },
     screen:  {
         display: 'flex',

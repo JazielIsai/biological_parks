@@ -100,8 +100,8 @@ export const DetailScreen = ({navigation}) => {
                                 
                                 <View style={{flex: 1, display: 'flex', width: '90%', padding: 10, marginBottom: 10,  }}>
                                     <Maps 
-                                        latitude={getBiologicAndParksData.latitude}  
-                                        longitude= {getBiologicAndParksData.length} 
+                                        latitude={parseFloat(getBiologicAndParksData.latitude)}  
+                                        longitude= {parseFloat(getBiologicAndParksData.length)} 
                                         customStyle={{
                                             padding: 10,
                                             alignItems: "center",

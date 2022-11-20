@@ -7,6 +7,8 @@ import { CardText } from "../../components/CardText";
 import { Maps } from "../../components/Maps";
 import { requestPost } from "../../helpers/requestPost";
 import { useNavigation } from "@react-navigation/native";
+import openMap from 'react-native-open-maps';
+
 
 export const ViewParks = () => {
 
@@ -79,6 +81,10 @@ export const ViewParks = () => {
 
     }
 
+    const onPress = (latitude, longitude) => {
+        openMap({ latitude: latitude, longitude: longitude });
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <>
@@ -93,7 +99,7 @@ export const ViewParks = () => {
                                 data={getDataParks}
                                 renderItem={ ({item}) => 
                                     (
-                                        <View style={{ backgroundColor: '#bdc3c7', borderBottomWidth: 2, borderBottomColor: '#2c3e50', padding: 10,}}>
+                                        <View style={{ borderBottomWidth: 2, borderBottomColor: '#2c3e50', padding: 10,}}>
                                             <CardText 
                                                 backgroundColor = '#bdc3c7'
                                                 data={item} 
@@ -105,7 +111,8 @@ export const ViewParks = () => {
                                                         <Text>Areas de recreocion: {item.recreationAreas}</Text>
                                                     </> 
                                                 }
-                                                link={<Maps latitude={item.latitude} longitude={item.length} />}
+                                                onPressLink={() => onPress(parseFloat(item.latitude), parseFloat(item.length))}
+                                                link={'Ir al mapa'}
                                             />
                                             <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }} >
                                                 

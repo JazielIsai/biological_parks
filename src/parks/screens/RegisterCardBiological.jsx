@@ -129,10 +129,11 @@ export const RegisterCardBiological = () => {
                     <Picker
                         selectedValue={form.statusConservation}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'statusConservation') }
+                        style={{ color: '#0008ff' }}
                     >
-                        <Picker.Item label={'Estatus de conservación'} />
-                        <Picker.Item label={'Si'} value={'1'} />
-                        <Picker.Item label={'No'} value={'0'} />
+                        <Picker.Item label={'Estatus de conservación'} style={{ color: '#0008ff' }}/>
+                        <Picker.Item label={'Si'} value={'1'} style={{ color: '#0008ff' }}/>
+                        <Picker.Item label={'No'} value={'0'} style={{ color: '#0008ff' }}/>
                     </Picker>
 
                     
@@ -149,12 +150,13 @@ export const RegisterCardBiological = () => {
                     <Picker
                         selectedValue={form.idCategory}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'idCategory')}
+                        style={{ color: '#0008ff' }}
                     >
                         {
                             getCategorie !== undefined && 
                             getCategorie !== null && 
                                 getCategorie.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.description} value={item.id} />
+                                    <Picker.Item key={index} label={item.description} value={item.id} style={{ color: '#0008ff' }}/>
                                 ))
                         }
                     </Picker>
@@ -188,6 +190,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 250,
         marginVertical: 10,
+        color: '#000',
     },
     buttonContainer: {
         alignItems: 'center',

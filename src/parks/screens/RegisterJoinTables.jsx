@@ -135,14 +135,14 @@ export const RegisterJoinTables = () => {
                         onValueChange={ (itemValue, itemIndex) => {
                             onChange(itemValue, 'idParks');
                         } }
-                        style={{ marginBottom: 15, }}
+                        style={{ marginBottom: 15, color: '#0008ff'}}
                     >
-                        <Picker.Item label="Seleccione el parque" value={0} />
+                        <Picker.Item label="Seleccione el parque" value={0} style={{ color: '#0008ff' }} />
                         {
                             getParks !== undefined &&
                             getParks !== null &&
                                 getParks.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.namePark} value={item.id} />
+                                    <Picker.Item key={index} label={item.namePark} value={item.id} style={{ color: '#0008ff' }} />
                                 ))
                         }
                     </Picker>
@@ -152,14 +152,14 @@ export const RegisterJoinTables = () => {
                         onValueChange={ (itemValue, itemIndex) => {
                             onChange(itemValue, 'idBiologicData');
                         } }
-                        style={{ marginBottom: 15, }}
+                        style={{ marginBottom: 15, color: '#0008ff' }}
                     >
-                        <Picker.Item label="Seleccione los datos biológicos" value={0} />
+                        <Picker.Item label="Seleccione los datos biológicos" value={0} style={{ color: '#0008ff' }} />
                         {
                             getBiologicData !== undefined &&
                             getBiologicData !== null &&
                                 getBiologicData.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.commonName} value={item.id} />
+                                    <Picker.Item key={index} label={item.commonName} value={item.id} style={{ color: '#0008ff' }} />
                                 ))
                         }
                     </Picker>
@@ -208,6 +208,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 200,
         marginVertical: 10,
+        color: '#000',
     },
     buttonSave: {
         shadowColor: '#1e44f1de',

@@ -8,6 +8,7 @@ import { CardText } from '../../components/CardText';
 import { EncabezadoProfile } from '../../components/EncabezadoProfile';
 import { CardImg } from '../../components/CardImg';
 import { urlImg } from '../../Shared/baseUrl';
+import openMap from 'react-native-open-maps';
 
 
 
@@ -23,6 +24,10 @@ export const Profile = () => {
     const uriProfile = 'http://www.ateneo.edu/sites/default/files/2021-11/istockphoto-517998264-612x612.jpeg';
 
     const navigation = useNavigation();
+
+    const onPress = (latitude, longitude) => {
+        openMap({ latitude: latitude, longitude: longitude });
+    }
 
     const itemsRender = ({item, index}) => {
         console.log(item)
@@ -41,8 +46,6 @@ export const Profile = () => {
                                 <Text> {item.column4} </Text>
                             </>
                         }
-                        onPressLink
-                        link
                     />
                 : item.verificate === 'Parks Data' ?
                     <CardText 
@@ -55,8 +58,8 @@ export const Profile = () => {
                                 <Text> {item.column5} </Text>
                             </>
                         }
-                        onPressLink = {() => navigation.navigate('Parks', {id: item.id})}
-                        link = 'See more'
+                        onPressLink = {() => onPress(item.column2, item.column3)}
+                        link = 'Ir al mapa'
                     />
                 : item.verificate === 'img parks data' | item.verificate === 'img biologic data' ?
                     <CardImg
@@ -77,6 +80,7 @@ export const Profile = () => {
             console.log("This is error: ",err);
         }
     }, [getJoinTable]) 
+    
 
     return (
         <SafeAreaView style={{flex:1, display: 'flex', backgroundColor: 'white'}}>

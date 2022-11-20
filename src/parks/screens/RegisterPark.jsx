@@ -191,12 +191,13 @@ export const RegisterPark = () => {
                     <Picker
                         selectedValue={form.cityStateId}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'cityStateId')}
+                        style={{ color: '#0008ff' }}
                     >
                         {
                             getCityState !== undefined &&
                             getCityState !== null && (
                                 getCityState.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.nameCityStates} value={item.id} />
+                                    <Picker.Item key={index} label={item.nameCityStates} value={item.id} style={{ color: '#0008ff' }} />
                                 ))
                             )
                         }
@@ -206,12 +207,13 @@ export const RegisterPark = () => {
                     <Picker
                         selectedValue={form.nameMunicipalityId}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'nameMunicipalityId')}
+                        style={{ color: '#0008ff' }}
                     >
                         {
                             getMunicipaly !== undefined &&
                             getMunicipaly !== null && (
                                 getMunicipaly.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.nameMunicipality} value={item.id} />
+                                    <Picker.Item key={index} label={item.nameMunicipality} value={item.id} style={{ color: '#0008ff' }} />
                                 ))
                             )
                         }
@@ -247,6 +249,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 250,
         marginVertical: 10,
+        color: '#000',
     },
     buttonContainer: {
         alignItems: 'center',
