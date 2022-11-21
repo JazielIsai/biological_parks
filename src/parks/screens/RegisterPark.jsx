@@ -197,7 +197,7 @@ export const RegisterPark = () => {
                             getCityState !== undefined &&
                             getCityState !== null && (
                                 getCityState.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.nameCityStates} value={item.id} style={{ color: '#0008ff' }} />
+                                    <Picker.Item key={index} label={item.nameCityStates} value={item.id} style={{ color: '#0008ff', backgroundColor: '#fff' }} />
                                 ))
                             )
                         }
@@ -213,7 +213,7 @@ export const RegisterPark = () => {
                             getMunicipaly !== undefined &&
                             getMunicipaly !== null && (
                                 getMunicipaly.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.nameMunicipality} value={item.id} style={{ color: '#0008ff' }} />
+                                    <Picker.Item key={index} label={item.nameMunicipality} value={item.id} style={{ color: '#0008ff', backgroundColor: '#fff' }} />
                                 ))
                             )
                         }

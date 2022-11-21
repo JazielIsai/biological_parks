@@ -137,12 +137,12 @@ export const RegisterJoinTables = () => {
                         } }
                         style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
-                        <Picker.Item label="Seleccione el parque" value={0} style={{ color: '#0008ff' }} />
+                        <Picker.Item label="Seleccione el parque" value={0} style={{ color: '#0008ff', backgroundColor: '#fff' }} />
                         {
                             getParks !== undefined &&
                             getParks !== null &&
                                 getParks.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.namePark} value={item.id} style={{ color: '#0008ff' }} />
+                                    <Picker.Item key={index} label={item.namePark} value={item.id} style={{ color: '#0008ff', backgroundColor: '#fff' }} />
                                 ))
                         }
                     </Picker>
@@ -154,12 +154,12 @@ export const RegisterJoinTables = () => {
                         } }
                         style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
-                        <Picker.Item label="Seleccione los datos biológicos" value={0} style={{ color: '#0008ff' }} />
+                        <Picker.Item label="Seleccione los datos biológicos" value={0} style={{ color: '#0008ff', backgroundColor: '#fff' }} />
                         {
                             getBiologicData !== undefined &&
                             getBiologicData !== null &&
                                 getBiologicData.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.commonName} value={item.id} style={{ color: '#0008ff' }} />
+                                    <Picker.Item key={index} label={item.commonName} value={item.id} style={{ color: '#0008ff', backgroundColor: '#fff' }} />
                                 ))
                         }
                     </Picker>
