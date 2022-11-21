@@ -15,6 +15,8 @@ import { EditPark } from '../parks/screens/EditParks';
 import { EditBiologicData } from '../parks/screens/EditBiologicData';
 import { StatusBar } from 'react-native';
 //import RoutesParks from "../parks/routes/RoutesParks";
+import {ViewImgByPark} from '../parks/screens/ViewImgByPark';
+import { ViewImgByBiologicData } from '../parks/screens/ViewImgByBiologicData';
 
 const Stack = createNativeStackNavigator();
 
@@ -49,7 +51,8 @@ export default function RouterMain() {
                             <Stack.Screen name='DetailScreen' component={DetailScreen} />
                             <Stack.Screen name='EditPark' component={EditPark} />
                             <Stack.Screen name='EditBiologicData' component={EditBiologicData} />
-                            
+                            <Stack.Screen name='ViewImgByPark' component={ViewImgByPark} />
+                            <Stack.Screen name='ViewImgByBiologicData' component={ViewImgByBiologicData} />
                         </Stack.Group>
                     )
                         : (

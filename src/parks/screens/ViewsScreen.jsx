@@ -63,8 +63,8 @@ export const ViewsScreen = () => {
                                 <Text> {item.column4} </Text>
                             </>
                         }
-                        onPressLink
-                        link
+                        onPressLink = {() => navigation.navigate('ViewImgByBiologicData', {idBiologicData: item.ID})}
+                        link = 'See more'
                     />
                 : item.verificate === 'Parks Data' ?
                     <CardText
@@ -77,7 +77,7 @@ export const ViewsScreen = () => {
                                 <Text> {item.column5} </Text>
                             </>
                         }
-                        onPressLink = {() => navigation.navigate('Parks', {id: item.id})}
+                        onPressLink = {() => navigation.navigate('ViewImgByPark', {idPark: item.ID})}
                         link = 'See more'
                     />
                 : item.verificate === 'img parks data' | item.verificate === 'img biologic data' ?
