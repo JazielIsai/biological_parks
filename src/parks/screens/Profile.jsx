@@ -46,6 +46,8 @@ export const Profile = () => {
                                 <Text> {item.column4} </Text>
                             </>
                         }
+                        onPressLink = {() => navigation.navigate('ViewImgByBiologicData', {idBiologicData: item.ID})}
+                        link = 'Ver más'
                     />
                 : item.verificate === 'Parks Data' ?
                     <CardText 
@@ -58,12 +60,18 @@ export const Profile = () => {
                                 <Text> {item.column5} </Text>
                             </>
                         }
-                        onPressLink = {() => onPress(item.column2, item.column3)}
-                        link = 'Ir al mapa'
+                        onPressLink = {() => navigation.navigate('ViewImgByPark', {idPark: item.ID})}
+                        link = 'Ver más'
                     />
-                : item.verificate === 'img parks data' | item.verificate === 'img biologic data' ?
+                : item.verificate === 'img parks data' ?
                     <CardImg
                         uri = {`${urlImg}${item.column2}`}
+                        onPressLink = {() => navigation.navigate('ViewImgByPark', {idPark: item.column4})}
+                    />
+                : item.verificate === 'img biologic data' ? 
+                    <CardImg
+                        uri = {`${urlImg}${item.column2}`}
+                        onPressLink = {() => navigation.navigate('ViewImgByBiologicData', {idBiologicData: item.column4})}
                     />
                 : ''
         );

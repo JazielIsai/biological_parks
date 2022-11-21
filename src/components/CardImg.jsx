@@ -2,19 +2,21 @@ import React from 'react-native';
 import { View, StyleSheet, TouchableHighlight, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-export const CardImg = ({data, uri, height = 380, width = '100%', marginBottom=20}) => {
+export const CardImg = ({data, uri, height = 380, width = '100%', marginBottom=20, onPressLink = () => {} }) => {
 
     const navigation = useNavigation();
     console.log("This is the uri: ",uri );
-    const onPress = () => {
-        navigation.navigate('DetailScreen', {idBiologic: data?.idBiologic, idParksData: data?.idParksData});
-    }
+
+    // const onPress = () => {
+    //     navigation.navigate('DetailScreen', {idBiologic: data?.idBiologic, idParksData: data?.idParksData});
+    // }
 
     return (
         <View style={{flex: 1, marginBottom: marginBottom, ...styles.container  }} >
             <TouchableHighlight
-                //onPress={ () => onPress() }
-                activeOpacity={0.8}
+                onPress={ () => onPressLink() }
+                activeOpacity={0.9}
+                underlayColor="#FFF"
                 style={ {
                     width,
                     height,

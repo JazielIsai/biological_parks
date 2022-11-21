@@ -64,7 +64,7 @@ export const ViewsScreen = () => {
                             </>
                         }
                         onPressLink = {() => navigation.navigate('ViewImgByBiologicData', {idBiologicData: item.ID})}
-                        link = 'See more'
+                        link = 'Ver más'
                     />
                 : item.verificate === 'Parks Data' ?
                     <CardText
@@ -78,11 +78,17 @@ export const ViewsScreen = () => {
                             </>
                         }
                         onPressLink = {() => navigation.navigate('ViewImgByPark', {idPark: item.ID})}
-                        link = 'See more'
+                        link = 'Ver más'
                     />
-                : item.verificate === 'img parks data' | item.verificate === 'img biologic data' ?
+                : item.verificate === 'img parks data' ?
                     <CardImg
                         uri = {`${urlImg}${item.column2}`}
+                        onPressLink = {() => navigation.navigate('ViewImgByPark', {idPark: item.column4})}
+                    />
+                : item.verificate === 'img biologic data' ? 
+                    <CardImg
+                        uri = {`${urlImg}${item.column2}`}
+                        onPressLink = {() => navigation.navigate('ViewImgByBiologicData', {idBiologicData: item.column4})}
                     />
                 : ''
         )
