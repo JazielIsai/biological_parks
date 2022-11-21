@@ -29,7 +29,7 @@ export const CardText = ({title, subtitle, description, onPressLink, link = '', 
                             style={styles.btnLink}
                         >
                             <View>
-                                <Text>
+                                <Text style={{color: '#000',}} >
                                     { link }
                                 </Text>
                             </View>

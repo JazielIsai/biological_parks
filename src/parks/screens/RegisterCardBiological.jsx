@@ -98,7 +98,7 @@ export const RegisterCardBiological = () => {
                         selectionColor={'#0093E9'}
                         multiline={true}
                         numberOfLines={8}
-                        editable={true}                        
+                        editable={true}                      
                         onChangeText={ text => onChange(text, 'description') }
                         value={form?.description}
                     />                    

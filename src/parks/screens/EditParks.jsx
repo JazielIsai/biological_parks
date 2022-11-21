@@ -110,8 +110,8 @@ export const EditPark = ({route, navigation}) => {
                         placeholder={'Nombre'}
                         style={styles.textInput}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ (value) => onChange(value, 'namePark') }
                         value={form?.namePark}
                     />
@@ -120,8 +120,11 @@ export const EditPark = ({route, navigation}) => {
                         placeholder={'Antecedentes'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
+                        multiline={true}
+                        numberOfLines={8}
+                        editable={true}
                         onChangeText={ (value) => onChange(value, 'trainingbackground') }
                         value={form?.trainingbackground}
                     />
@@ -130,8 +133,8 @@ export const EditPark = ({route, navigation}) => {
                         placeholder={'Área'}
                         style={styles.textInput}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ (value) => onChange(value, 'areaha') }
                         value={form?.areaha}
                     />
@@ -140,8 +143,8 @@ export const EditPark = ({route, navigation}) => {
                         placeholder={'Forma'}
                         style={styles.textInput}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ (value) => onChange(value, 'form') }
                         value={form?.form}
                     />
@@ -150,7 +153,7 @@ export const EditPark = ({route, navigation}) => {
                         placeholder={'Colindancias'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
+                        underlineColorAndroid={'#0093E9'}
                         selectionColor={'white'}
                         onChangeText={ (value) => onChange(value, 'boundaries') }
                         value={form?.boundaries}
@@ -160,8 +163,8 @@ export const EditPark = ({route, navigation}) => {
                         placeholder={'Áreas de recreo'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ (value) => onChange(value, 'recreationareas') }
                         value={form?.recreationareas}
                     />
@@ -170,8 +173,8 @@ export const EditPark = ({route, navigation}) => {
                         placeholder={'Calle'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ (value) => onChange(value, 'street') }
                         value={form?.street}
                     />
@@ -180,7 +183,7 @@ export const EditPark = ({route, navigation}) => {
                         placeholder={'Colonia'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
+                        underlineColorAndroid={'#0093E9'}
                         selectionColor={'white'}
                         onChangeText={ (value) => onChange(value, 'suburb') }
                         value={form?.suburb}
@@ -189,7 +192,7 @@ export const EditPark = ({route, navigation}) => {
                         placeholder={'Latitud'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
+                        underlineColorAndroid={'#0093E9'}
                         selectionColor={'white'}
                         onChangeText={ (value) => onChange(value, 'latitude') }
                         value={form?.latitude}
@@ -200,7 +203,7 @@ export const EditPark = ({route, navigation}) => {
                         placeholder={'Longitud'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
+                        underlineColorAndroid={'#0093E9'}
                         selectionColor={'white'}
                         onChangeText={ (value) => onChange(value, 'length') }
                         value={form?.length}
@@ -266,6 +269,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 250,
         marginVertical: 10,
+        color: '#000',
     },
     buttonContainer: {
         alignItems: 'center',

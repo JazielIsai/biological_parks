@@ -121,7 +121,7 @@ export const ViewParks = () => {
                                                     onPress={ () => updatePark(item.id) }
                                                 >
                                                     <View>
-                                                        <Text>Editar</Text>
+                                                        <Text style={{ color: '#000' }} >Editar</Text>
                                                     </View>
                                                 </TouchableOpacity>
 
@@ -130,7 +130,7 @@ export const ViewParks = () => {
                                                     onPress={ () => deletePark(item.id) }
                                                 >
                                                     <View>
-                                                        <Text>Eliminar</Text>
+                                                        <Text style={{ color: '#fff' }} >Eliminar</Text>
                                                     </View>
                                                 </TouchableOpacity>
                                                 

@@ -91,8 +91,8 @@ export const EditBiologicData = ({route, navigation}) => {
                         placeholder={'Nombre comun'}
                         style={styles.textInput}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         onChangeText={ text => onChange(text, 'commonName') }
                         value={form?.commonName}
 
@@ -102,8 +102,8 @@ export const EditBiologicData = ({route, navigation}) => {
                         placeholder={'Nombre cientifico'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'} 
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'} 
                         onChangeText={ text => onChange(text, 'scientificName') }
                         value={form?.scientificName}
                     />
@@ -112,9 +112,11 @@ export const EditBiologicData = ({route, navigation}) => {
                         placeholder={'Descripcion'}
                         style={styles.textInput}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
                         multiline={true}
+                        numberOfLines={8}
+                        editable={true}
                         onChangeText={ text => onChange(text, 'description') }
                         value={form?.description}
                     />                    
@@ -123,7 +125,8 @@ export const EditBiologicData = ({route, navigation}) => {
                         placeholder={'Dsitrubucion geografica'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
+                        multiline={true}
+                        underlineColorAndroid={'#0093E9'}
                         onChangeText={ text => onChange(text, 'geographicalDistribution') }
                         value={form?.geographicalDistribution}
                     />
@@ -132,8 +135,11 @@ export const EditBiologicData = ({route, navigation}) => {
                         placeholder={'Historia natural'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
-                        selectionColor={'gray'}
+                        underlineColorAndroid={'#0093E9'}
+                        selectionColor={'#0093E9'}
+                        multiline={true}
+                        numberOfLines={8}
+                        editable={true}
                         onChangeText={ text => onChange(text, 'naturalHistory') }
                         value={form?.naturalHistory}
                     />
@@ -152,7 +158,7 @@ export const EditBiologicData = ({route, navigation}) => {
                         placeholder={'Autor de la ficha'}
                         placeholderTextColor={'rgba(128,128,128,0.8)'}
                         style={styles.textInput}
-                        underlineColorAndroid={'gray'}
+                        underlineColorAndroid={'#0093E9'}
                         onChangeText={ text => onChange(text, 'authorBiologicData') }
                         value={form?.authorBiologicData}
                     />
@@ -199,6 +205,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 250,
         marginVertical: 10,
+        color: '#000',
     },
     buttonContainer: {
         alignItems: 'center',
