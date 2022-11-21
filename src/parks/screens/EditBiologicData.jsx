@@ -147,10 +147,11 @@ export const EditBiologicData = ({route, navigation}) => {
                     <Picker
                         selectedValue={form.statusConservation}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'statusConservation') }
+                        style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
-                        <Picker.Item label={'Estatus de conservación'} />
-                        <Picker.Item label={'Si'} value={'1'} />
-                        <Picker.Item label={'No'} value={'0'} />
+                        <Picker.Item label={'Estatus de conservación'} style={{ color: '#0008ff' }} />
+                        <Picker.Item label={'Si'} value={'1'} style={{ color: '#0008ff' }} />
+                        <Picker.Item label={'No'} value={'0'} style={{ color: '#0008ff' }} />
                     </Picker>
 
                     
@@ -166,12 +167,13 @@ export const EditBiologicData = ({route, navigation}) => {
                     <Picker
                         selectedValue={form.idCategory}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'idCategory')}
+                        style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
                         {
                             getCategorie !== undefined && 
                             getCategorie !== null && 
                                 getCategorie.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.description} value={item.id} />
+                                    <Picker.Item key={index} label={item.description} value={item.id} style={{ color: '#0008ff' }} />
                                 ))
                         }
                     </Picker>

@@ -129,7 +129,7 @@ export const RegisterCardBiological = () => {
                     <Picker
                         selectedValue={form.statusConservation}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'statusConservation') }
-                        style={{ color: '#0008ff' }}
+                        style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
                         <Picker.Item label={'Estatus de conservación'} style={{ color: '#0008ff' }}/>
                         <Picker.Item label={'Si'} value={'1'} style={{ color: '#0008ff' }}/>
@@ -150,7 +150,7 @@ export const RegisterCardBiological = () => {
                     <Picker
                         selectedValue={form.idCategory}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'idCategory')}
-                        style={{ color: '#0008ff' }}
+                        style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
                         {
                             getCategorie !== undefined && 

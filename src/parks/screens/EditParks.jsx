@@ -213,12 +213,13 @@ export const EditPark = ({route, navigation}) => {
                     <Picker
                         selectedValue={form.cityStateId}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'cityStateId')}
+                        style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
                         {
                             getCityState !== undefined &&
                             getCityState !== null && (
                                 getCityState.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.nameCityStates} value={item.id} />
+                                    <Picker.Item key={index} label={item.nameCityStates} value={item.id} style={{ color: '#0008ff' }} />
                                 ))
                             )
                         }
@@ -228,12 +229,13 @@ export const EditPark = ({route, navigation}) => {
                     <Picker
                         selectedValue={form.nameMunicipalityId}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'nameMunicipalityId')}
+                        style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
                         {
                             getMunicipaly !== undefined &&
                             getMunicipaly !== null && (
                                 getMunicipaly.map( (item, index) => (
-                                    <Picker.Item key={index} label={item.nameMunicipality} value={item.id} />
+                                    <Picker.Item key={index} label={item.nameMunicipality} value={item.id}  style={{ color: '#0008ff' }}/>
                                 ))
                             )
                         }

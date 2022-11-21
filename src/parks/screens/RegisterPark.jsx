@@ -191,7 +191,7 @@ export const RegisterPark = () => {
                     <Picker
                         selectedValue={form.cityStateId}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'cityStateId')}
-                        style={{ color: '#0008ff' }}
+                        style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
                         {
                             getCityState !== undefined &&
@@ -207,7 +207,7 @@ export const RegisterPark = () => {
                     <Picker
                         selectedValue={form.nameMunicipalityId}
                         onValueChange={(itemValue, itemIndex) => onChange(itemValue, 'nameMunicipalityId')}
-                        style={{ color: '#0008ff' }}
+                        style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
                         {
                             getMunicipaly !== undefined &&

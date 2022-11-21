@@ -135,7 +135,7 @@ export const RegisterJoinTables = () => {
                         onValueChange={ (itemValue, itemIndex) => {
                             onChange(itemValue, 'idParks');
                         } }
-                        style={{ marginBottom: 15, color: '#0008ff'}}
+                        style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
                         <Picker.Item label="Seleccione el parque" value={0} style={{ color: '#0008ff' }} />
                         {
@@ -152,7 +152,7 @@ export const RegisterJoinTables = () => {
                         onValueChange={ (itemValue, itemIndex) => {
                             onChange(itemValue, 'idBiologicData');
                         } }
-                        style={{ marginBottom: 15, color: '#0008ff' }}
+                        style={{ marginBottom: 15, color: '#0008ff', backgroundColor: '#fff' }}
                     >
                         <Picker.Item label="Seleccione los datos biológicos" value={0} style={{ color: '#0008ff' }} />
                         {
